@@ -1,0 +1,9 @@
+/* 일치선택자 */
+
+.orange + li {
+    color: orange;
+}
+
+.orange ~ li {
+    color: red;
+}

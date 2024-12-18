@@ -1,0 +1,38 @@
+
+h1:hover {
+    color: red;
+}
+a:hover {
+    color:blue;
+    background-color: black;
+}
+
+a:active {
+    background-color: blue;
+}
+
+
+/* div:hover{
+    cursor: pointer;
+    color : red;
+} */
+
+input:focus {
+    background-color: orange;
+}
+
+div.코딩온1{
+    color: blue;
+}
+
+div.코딩온2{
+    color: red;
+}
+
+div.코딩온1:hover {
+    color: red;
+}
+
+div.코딩온2:hover {
+    color: blue;
+}

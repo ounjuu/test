@@ -1,0 +1,12 @@
+/* 일치선택자 */
+/* span.orange {
+    color: orange;
+}
+
+ul > .orange {
+    color : orange;
+} */
+
+div .orange {
+    color : orange;
+}
