@@ -1,0 +1,65 @@
+body {
+    background-color: rgb(237, 234, 255);
+}
+
+.box1 {
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    width: 70%;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    align-items : center;
+    border-top: solid rgb(75, 6, 127);
+    border-top-width: 10px;
+}
+
+.inbox {
+    margin-left: 20px;
+}
+
+.box2, .box3, .box4, .box56 {
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    width: 70%;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 30px;
+    border-left: solid rgb(49, 91, 229);
+    border-left-width: 5px;
+}
+
+.box2, .box3, .box4, .box5, .box6 {
+    display: flex;
+}
+
+.box6 {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 30px;
+
+}
+
+textarea {
+    width: 200px;
+    height: 100px;
+  }
+
+/* .box2, .box3, .box4, .box5 {
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    width: 70%;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 30px;
+    display: flex;
+    align-items : center;
+    border-left: solid rgb(49, 91, 229);
+    border-left-width: 5px;
+} */
+
+[type="button"] {
+    background-color: purple;
+    color: white;
+    border-radius: 5px 5px 5px 5px;
+}

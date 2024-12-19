@@ -1,0 +1,13 @@
+[disabled]{
+    color:red;
+}
+
+/* 잘 안씀 */
+
+[type="password"]{
+    color: red;
+}
+
+[value="HEROPY"]{
+    color: blue;
+}

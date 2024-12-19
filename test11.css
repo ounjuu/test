@@ -1,0 +1,29 @@
+.boxWarp{
+    display: flex;
+    width: auto;
+    height: 200px;
+    background-color: beige;
+
+}
+
+.box{
+    background-color: navy;
+    color: white;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items : center;
+}
+    
+/* margin: 10px; 전부 적용
+
+margin: 10px 20px; 상하, 좌우
+
+margin: 10px 10px 10px 10px; 상,우,하,좌
+
+margin-top, bottom, left, right : 각각 사용 */
+
+
+/* text-align: center; */

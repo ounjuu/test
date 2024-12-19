@@ -1,0 +1,7 @@
+.fruits *:nth-child(2n){
+    color: red;
+}
+
+.fruits *:nth-child(2n + 1){
+    color: blue;
+}
