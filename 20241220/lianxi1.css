@@ -1,0 +1,22 @@
+.box {
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+}
+
+/* .box:hover {
+    visibility: hidden;
+} */
+
+.box:hover{
+    opacity: 0;
+}
+
+.box{
+    overflow: auto;
+}
+
+
+/* .box:hover{
+    display: none;
+} */
