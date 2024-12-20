@@ -1,0 +1,19 @@
+.b1{
+    top: 50px;
+    width: 100%;
+    background-color: black;
+    height: 100px;
+    position: fixed;
+}
+
+.b2{
+    width: 400px;
+    height: 400px;
+    background-color: red;
+}
+
+.b3{
+    width: 600px;
+    height: 800px;
+    background-color: blue;
+}

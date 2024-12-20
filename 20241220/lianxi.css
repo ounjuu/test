@@ -52,7 +52,7 @@ h2, p {
 
 /* box 안에 내용들 */
 .inbox {
-    margin-left: 20px;
+    margin-left: 20px; 
 }
 
 .inbox2 {
@@ -61,7 +61,7 @@ h2, p {
 }
 
 /* 설문조사 밑부분 박스 */
-.box2, .box3, .box4, .box5 {
+.box2, .box3, .box4, .box5, .box6 {
     background-color: white;
     border-radius: 5px 5px 5px 5px;
     width: 700px;
@@ -72,7 +72,7 @@ h2, p {
     border-left-width: 5px;
 }
 
-.box6 {
+.box7 {
     background-color: none;
     border-radius: 5px 5px 5px 5px;
     width: 700px;
@@ -82,7 +82,7 @@ h2, p {
     border-left-width: 5px;
 }
 
-.box2, .box3, .box4, .box5, .box6 {
+.box2, .box3, .box4, .box5, .box6, .box7{
     display: flex;
 }
 
