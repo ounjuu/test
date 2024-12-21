@@ -1,0 +1,41 @@
+.HTML{
+   background-color: aqua;
+   width: 200px;
+   height: 100px;
+}
+.css{
+   background-color: green;
+   width: 200px;
+   height: 100px;
+   margin-left:30px;
+}
+.Java{
+   background-color: red;
+   width: 200px;
+   height: 100px;
+   margin-left:30px;
+}
+
+
+/* display: flex; 연습*/
+.box1{
+   width: auto;
+   height: 200px;
+   background-color: orange;
+   display: flex;
+}
+
+.KDT{
+    width:122px;
+    height: 122px;
+    background-color: navy;
+    color: white;
+    line-height: 122px;
+    text-align: center;
+
+}
+
+.box2 {
+   justify-content: center;
+   display: flex;
+}
