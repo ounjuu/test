@@ -1,0 +1,121 @@
+body {
+    background-color: rgb(238, 205, 223);
+}
+
+.box {
+    width: 700px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 5px 5px 5px 5px;
+    background-color: white;
+    padding-top: 8px;
+    padding-bottom: 10px;
+}
+
+
+.box7 {
+    width: 700px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.box1 {
+    border-top: solid;
+    border-width: 5px;
+    border-color:rgb(120, 126, 185)
+}
+
+.box2, .box3, .box4, .box5, .box6 {
+    margin-top: 30px;
+    border-left: solid;
+    border-width: 5px;
+    border-color:rgb(220, 161, 251);
+}
+
+.inbox {
+    margin-left: 20px;
+}
+
+.inbox2 {
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 10px;
+    
+}
+
+textarea {
+    width: 650px;
+    height: 100px;
+}
+
+h2{
+    font-size: 15px;
+    font-family: "Do Hyeon", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1{
+    font-family: "Do Hyeon", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+.box:hover {
+    box-shadow: 3px 3px 0px rgb(97, 97, 97);
+}
+
+
+[type="button"]{
+    border-style: none;
+    border-radius: 5px;
+    font-family: "Do Hyeon", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    padding: 3px 8px;
+    background-color: rgb(73, 159, 250);
+}
+
+
+[type="button"]:hover{
+    border-style: none;
+    border-radius: 5px;
+    font-family: "Do Hyeon", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    padding: 3px 8px;
+    background-color: rgb(73, 159, 250);
+    opacity: 60%;
+    
+    box-shadow: 2px 2px 0px black;
+
+}
+
+select{
+    border-style: none;
+    border-bottom: solid;
+    border-width: 2px;
+    border-color: rgb(168, 101, 231);
+    opacity: 70%;
+    /* 폰트 변경 */
+    font-family: "Do Hyeon", serif;
+    font-weight: 400;
+    font-style: normal;
+    /* 폰트 변경 */
+    
+}
+
+.tx1{
+       /* 폰트 변경 */
+       font-family: "Do Hyeon", serif;
+       font-weight: 400;
+       font-style: normal;
+       /* 폰트 변경 */
+
+       font-size: 13px;
+}

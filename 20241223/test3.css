@@ -1,0 +1,39 @@
+.Header { 
+    height: 20px;
+    width: auto;
+    background-color: rgb(202, 201, 201);
+    display: flex;
+    font-weight: bold;
+}
+
+.Header1, .Header2, .Header3, .Header4 { 
+    margin-top: 30px;
+}
+
+.Header1MENU, .MENU123, .logomenu, .loginmenu {
+    display: flex;
+}
+
+.Header1, .Header2, .Header3, .Header4 {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.Header1, .Header2, .Header3, .Header4{
+    justify-content: space-between;
+}
+
+.AMENU2, .AMENU3, .cMENU2, .cMENU3 {
+padding-left: 10px;
+
+}
+
+.dMENU1, .dMENU2, .dMENU3, .dMENU4{
+    padding-left: 10px; 
+}
+
+.explain {
+    text-align: center;
+}

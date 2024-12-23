@@ -1,0 +1,40 @@
+.container {
+    width: 500px;
+    height: 500px;
+    border: solid;
+    border-width: 3px;
+    position: relative;
+}
+
+.red {
+    background-color: red;
+    width: 100px;
+    height: 100px;
+}
+
+.or {
+    background-color: orange;
+    width: 100px;
+    height: 100px;
+    left: 50px;
+    top: 30px;
+    position: relative;
+}
+
+.ye {
+    background-color: yellow;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    right: 30px;
+    bottom: 100px;
+}
+
+.gr {
+    background-color: green;
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    right: 100px;
+    top: 100px;
+}
