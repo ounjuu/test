@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./test2.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function say() {
+        console.log("안녕하세요.");
+      }
+
+      const sayHello = (name, age) => {
+        console.log(`제 이름은 ${name}입니다. 나이는 ${age}입니다.`);
+      }; //매개변수 <- () 받는란
+    </script>
+  </head>
+
+  <body>
+    <button onclick="sayHello('남생이', 10)">눌러!</button>
+    <button onclick="sayHello('김밥', 15)">눌러!2</button>
+  </body>
+</html>
