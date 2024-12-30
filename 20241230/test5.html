@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let str = "Happy day~  ";
+      console.log(str.length); //12
+      console.log(str.toUpperCase()); //검색을 하는 상황? python, Python, PYTHON / Python
+      // str.toLowerCase() -> python / db.toLowerCase() -> python
+
+      console.log(str.indexOf("p")); //2
+      // str.slice(startIdx[,endIdx]) > [옵션]
+      // startIdx 포함, endIdx 포함X
+      console.log(str.slice(1, 4)); //2
+      console.log(str.replace("p", "a")); //많이 쓰임 -를 빈문자열로 변경 > 처음꺼 하나만
+      console.log(str.replaceAll("p", "a")); //많이 쓰임 -를 빈문자열로 변경 > 전체 다
+      console.log(str.repeat(3));
+      console.log(str.trim()); // 자주 씀, 앞 뒤 공백 제거
+      // 언제 쓰냐?
+      // 'python ', ' python'
+      // str.trim().toLowerCase()
+      console.log(str.split("")); // 한글자씩 끊어서 배열에 저장.
+      console.log(str.split(" ")); // 단어 기준으로 끊어서 배열에 저장.
+      console.log(str.split("a")); // a 문자열을 기준으로 끊어서 배열에 저장.
+      // 언제 쓰냐?
+      // str.split('\n') // 엔터 기준으로 잘라서 저장
+      // str = '안녕하세요.\n안녕하세요.'
+      // str.split('\n') => ['안녕하세요.', '안녕하세요.']
+      // for -> 적절한 위치에 br 태그 넣기.
+
+      const str2 = "AAaaabbbb";
+      str2.toLowerCase();
+      const lowerStr2 = str2.toLowerCase();
+      console.log(str2);
+      console.log(lowerStr2);
+
+      // ***************** 배열 관련 매소드
+      let days = ["월", "화", "수"];
+      days.push("목"); // 배열의 가장 마지막에, 원소 추가, *원형 변경됨
+      console.log(days); // 월, 화, 수, 목 *원형 변경됨
+
+      days.pop(); // 배열의 마지막 원소를 제거하는 함수
+      console.log(days); // 월, 화, 수, 목>제거 *원형 변경됨
+
+      days.unshift("일"); // 배열의 첫번째에 원소를 추가하는 함수.
+      console.log(days); // 일, 월, 화, 수
+
+      days.shift(); // 배열의 첫번째 원소를 제거하는 함수
+      console.log(days); // 월, 화, 수
+
+      let numbers = [1, 2, 3, 4, 5, 6];
+      console.log(numbers.includes(3)); // includes 많이 쓰임 - true
+      console.log(numbers.includes(7)); // includes 많이 쓰임 - false
+
+      const str4 = "abcd";
+      console.log(str4.includes("a"));
+      console.log(str4.includes("e"));
+      console.log(str4.includes("ab"));
+
+      // numbers.length // 6
+      numbers.indexOf(3); //2
+      console.log(numbers.indexOf(3)); //첫 인덱스만 반환
+
+      numbers.reverse();
+      console.log(numbers);
+
+      const str4Split = str4.split(""); // ['a', 'b', 'c', 'd']
+      console.log(str4Split.join("-"));
+    </script>
+  </body>
+</html>

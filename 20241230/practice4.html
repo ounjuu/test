@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 이중 for문 10000 까지의 숫자 중에서
+      • 13의 배수면서 홀수인 숫자를 찾아 봅시다!
+      • + prompt 를 이용해서 입력받은 수 까지 13의 배수면서 홀수인 숫자를
+      찾는 프로그램을 만들어 봅시다! */
+      const number = prompt("10000 이하의 숫자를 입력하세요.");
+      for (let i = 1; i <= number; i++) {
+        if (i % 13 === 0 && i % 2 !== 0) {
+          console.log(i);
+        }
+      }
+    </script>
+  </body>
+</html>
