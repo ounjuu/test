@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+
+      let ages = () => {
+        const age = prompt("나이를 입력해주세요");
+        const gender = prompt("성별을 입력해주세요");
+        if(age >= 20){
+          if(gender === "여성"){
+            console.log("성인 여성");
+          } else if(gender === "남성") {
+            console.log("성인 남성");
+          } 
+        } else if(20 > age && age >= 17){
+          if(gender === "여성"){
+            console.log("고등 여성");
+          } else if(gender === "남성") {
+            console.log("고등 남성");
+          } 
+        } else if(17 > age && age>= 14){
+          if(gender === "여성"){
+            console.log("중등 여성");
+          } else if(gender === "남성") {
+            console.log("중등 남성");
+          } 
+        } else if(14 > age && age>= 8){
+          if(gender === "여성"){
+            console.log("초등 여성");
+          } else if(gender === "남성") {
+            console.log("초등 남성");
+          } 
+        } else {
+          if(gender === "여성"){
+            console.log("유아 여성");
+          } else if(gender === "남성") {
+            console.log("유아 남성");
+          } 
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button onclick="ages();">ages</div>
+  </body>
+</html>
