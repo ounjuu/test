@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./practice1.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <img src="../images/과일.png" alt="과일" id="img1" />
+      <div class="btns">
+        <div onclick="change('사과')" class="apple">사과</div>
+        <div onclick="change('바나나')" class="banana">바나나</div>
+        <div onclick="change('포도')" class="grape">포도</div>
+        <div onclick="change('복숭아')" class="peach">복숭아</div>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script>
+      const change = (type) => {
+        const imageMap = {
+          사과: "../images/사과.jpg",
+          바나나: "../images/바나나.jpg",
+          포도: "../images/포도.jpg",
+          복숭아: "../images/복숭아.jpg", 
+        };
+    
+        $("#img1").attr("src", imageMap[type] || imageMap["복숭아"]);
+      };
+    </script>
+    </script>
+  </body>
+</html>

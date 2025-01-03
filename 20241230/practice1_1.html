@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*1 ~ 100 까지의 배열을 for 문을 사용해서 만들기!
+      • 그리고 해당 배열의 합을
+      • For 문
+      • For of 문
+      • forEach 문
+      • 을 사용해서 구하기 */
+      let numbers = [];
+      for (let i = 1; i <= 100; i++) {
+        numbers.push(i);
+      }
+      console.log(numbers);
+
+      let add = 0;
+      for (let i = 0; i < 100; i++) {
+        add = add + numbers[i];
+      }
+      console.log(add);
+
+      let add2 = 0;
+      for (let num of numbers) {
+        add2 = add2 + num;
+      }
+      console.log(add2);
+
+      let add3 = 0;
+      numbers.forEach((num) => {
+        add3 = add3 + num;
+      });
+      console.log(add3);
+    </script>
+  </body>
+</html>

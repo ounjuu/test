@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./practice1.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <img src="../images/과일.png" alt="과일" id="img1" />
+      <div class="btns">
+        <div onclick="change('사과')" class="apple">사과</div>
+        <div onclick="change('바나나')" class="banana">바나나</div>
+        <div onclick="change('포도')" class="grape">포도</div>
+        <div onclick="change('복숭아')" class="peach">복숭아</div>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script>
+      const change = (type) => {
+        document.querySelector("img1").src = change;
+        type === "사과"
+          ? "../images/사과.png"
+          : type === "바나나"
+          ? "../images/바나나.png"
+          : type === "포도"
+          ? "../images/포도.png"
+          : "../images/복숭아.png";
+      };
+      /*let img = "";
+      const changeImg = (url) => {
+        img = url;
+      };
+
+      /* const data = [
+        { value: "사과", url: "이미지 주소" },
+        { value: "바나나" },
+        { value: "포도" },
+        { value: "복숭아" },
+      ];
+
+      foreach {
+        return <div class="btn" onclick="change(url${data에 있는 것}))"> > div 4개 만들기 > btn 밑에 추가
+      }
+      document.querySelector > data. */
+    </script>
+  </body>
+</html>

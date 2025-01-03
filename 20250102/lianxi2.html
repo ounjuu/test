@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./lianxi2.css" />
+  </head>
+  <body>
+    <laber for="author">작성자 </laber>
+    <input type="text" id="author" /><br />
+    <laber for="contents">내용 </laber>
+    <input type="text" id="contents" /><br /><br />
+
+    <!-- 작성 버튼 -->
+    <button id="finish">작성</button><br /><br />
+
+    <!-- 테이블 -->
+    <table>
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>작성자</th>
+          <th>내용</th>
+          <th>작성일</th>
+        </tr>
+      </thead>
+      <tbody id="tbodyplus"></tbody>
+    </table>
+
+    <!-- JS -->
+    <script>
+      let num = 0;
+      document.getElementById("finish").addEventListener("click", function () {
+        const author = document.getElementById("author").value.trim();
+        const contents = document.getElementById("contents").value.trim();
+        num++;
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = ("0" + today.getMonth() + 1).slice(-2);
+        let day = ("0" + today.getDate()).slice(-2);
+        let hours = ("0" + today.getHours()).slice(-2);
+        let minutes = ("0" + today.getMinutes()).slice(-2);
+
+        let dayFull1 =
+          year + "-" + month + "-" + day + "" + hours + ":" + minutes;
+
+        // 테이블 행 생성
+        const table = document.getElementById("tbodyplus");
+        const newRow = document.createElement("tr");
+
+        newRow.innerHTML = `
+              <td>${num}</td>
+              <td>${author}</td>
+              <td>${contents}</td>
+              <td>${dayFull1}</td>
+          `;
+
+        table.appendChild(newRow);
+
+        // 입력 필드 초기화
+        document.getElementById("author").value = "";
+        document.getElementById("content").value = "";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>달력 내용 추가</title>
+    <style>
+      table {
+        width: 100%;
+        max-width: 600px;
+        margin: 20px auto;
+        border-collapse: collapse;
+        text-align: center;
+      }
+      th {
+        width: 50px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        vertical-align: top;
+        height: 20px;
+      }
+      td {
+        width: 50px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        vertical-align: top;
+        height: 100px;
+      }
+      .event {
+        margin-top: 5px;
+        font-size: 12px;
+      }
+      .sunday {
+        color: red;
+      }
+      .saturday {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 입력 영역 -->
+    <div>
+      <label for="dateInput">날짜: </label>
+      <input type="number" id="dateInput" /><br />
+      <label for="contentInput">내용: </label>
+      <input type="text" id="contentInput" /><br />
+      <button onclick="addEvent()">작성</button>
+    </div>
+
+    <!-- 달력 -->
+    <h1 style="text-align: center; color: green">2025년 1월</h1>
+    <table>
+      <thead>
+        <tr>
+          <th class="sunday">日</th>
+          <th>月</th>
+          <th>火</th>
+          <th>水</th>
+          <th>木</th>
+          <th>金</th>
+          <th class="saturday">土</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 달력 데이터 -->
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td class="days" data-date="1">1</td>
+          <td class="days" data-date="2">2</td>
+          <td class="days" data-date="3">3</td>
+          <td class="saturday days" data-date="4">4</td>
+        </tr>
+        <tr>
+          <td class="sunday days" data-date="5">5</td>
+          <td class="days" data-date="6">6</td>
+          <td class="days" data-date="7">7</td>
+          <td class="days" data-date="8">8</td>
+          <td class="days" data-date="9">9</td>
+          <td class="days" data-date="10">10</td>
+          <td class="saturday days" data-date="11">11</td>
+        </tr>
+        <tr>
+          <td class="sunday days" data-date="12">12</td>
+          <td class="days" data-date="13">13</td>
+          <td class="days" data-date="14">14</td>
+          <td class="days" data-date="15">15</td>
+          <td class="days" data-date="16">16</td>
+          <td class="days" data-date="17">17</td>
+          <td class="saturday days" data-date="18">18</td>
+        </tr>
+        <tr>
+          <td class="sunday days" data-date="19">19</td>
+          <td class="days" data-date="20">20</td>
+          <td class="days" data-date="21">21</td>
+          <td class="days" data-date="22">22</td>
+          <td class="days" data-date="23">23</td>
+          <td class="days" data-date="24">24</td>
+          <td class="saturday days" data-date="25">25</td>
+        </tr>
+        <tr>
+          <td class="sunday days" data-date="26">26</td>
+          <td class="days" data-date="27">27</td>
+          <td class="days" data-date="28">28</td>
+          <td class="days" data-date="29">29</td>
+          <td class="days" data-date="30">30</td>
+          <td class="days" data-date="31">31</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      const addEvent = () => {
+        const dateInput = $("#dateInput").val().trim(); // 입력한 날짜
+        const contentInput = $("#contentInput").val().trim(); // 입력한 내용
+
+        // 입력값 검증
+        if (!dateInput || isNaN(dateInput) || dateInput < 1 || dateInput > 31) {
+          alert("유효한 날짜를 입력하세요 (1~31)");
+          return;
+        }
+        if (!contentInput) {
+          alert("내용을 입력하세요.");
+          return;
+        }
+
+        // 날짜에 해당하는 <td> 찾기
+        const targetCell = $(`.days[data-date="${dateInput}"]`);
+
+        if (targetCell.length === 0) {
+          alert("유효하지 않은 날짜입니다.");
+          return;
+        }
+
+        // 기존 내용을 덮어쓰기
+        let eventDiv = targetCell.find(".event");
+        if (eventDiv.length === 0) {
+          eventDiv = $("<div>").addClass("event").appendTo(targetCell);
+        }
+        eventDiv.text(contentInput); // 내용 덮어쓰기
+
+        // 입력값 초기화
+        $("#dateInput").val("");
+        $("#contentInput").val("");
+      };
+    </script>
+  </body>
+</html>

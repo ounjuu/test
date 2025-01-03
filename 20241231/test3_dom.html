@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        display: inline-block;
+      }
+
+      .green {
+        background-color: green;
+      }
+
+      .red {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="hello">안녕하세요.</div>
+    <div class="box green">클래스 선택 초로</div>
+    <div class="box red">클래스 선택 빨강</div>
+    <input type="text" name="phone" />
+
+    <div><span>Hello</span></div>
+    <input type="text" name="email" id="email-input"></input>
+
+    <div>
+      <span class="test-parent">
+        Hello World
+      </span>
+    </div>
+    <script>
+      //요소 선택하는 매서드
+      //getElementById: id를 이용하여 요소 선택 ex) hello라는 id를 가진 요소 단 1개 선택
+      console.log(document.getElementById("hello"));
+      //getElementByClassName: css 이름을 이용하여 요소 선택 ex) 여러개 선택 class를 가진 요소 선택
+      console.log(document.getElementsByClassName("box"));
+      //getElementByTagName: 태그 이름을 이용하여 요소 선택(여러개 선택. 하나만 있어도 배열에 담아서 선택됨.)
+      console.log(document.getElementsByTagName("div"));
+      //getElementByName: 태그 이름을 이용하여 요소 선택(여러개 선택. 하나만 있어도 배열에 담아서 선택됨.)
+      console.log(document.getElementsByName("phone"));
+
+      //선택자를 이용하여 요소를 선택.
+      //여러개 선택. 하나만 있어도 배열에 담아서 선택됨.
+      console.log(document.querySelector("#Hello"));
+      console.log(document.querySelector(".box"));
+      console.log(document.querySelector("[name=phone]"));
+      console.log(document.querySelector("div > span"));
+
+      console.log(document.querySelectorAll("#Hello"));
+      console.log(document.querySelectorAll(".box"));
+      console.log(document.querySelectorAll("[name=phone]"));
+      console.log(document.querySelectorAll("div > span"));
+
+      //선택자를 이용하여 요소를 선택.
+      /* console.log(document.querySelectorAll(()));*/
+    </script>
+    <div class="container">안녕하세요 <b>^^</b></div>
+
+    <script>
+      const container = document.querySelector(".container");
+      console.log(container.innerText); // 선택된 요소 내의 텍스트에 접근
+      console.log(container.innerHTML); // 선택된 요소 내의 모든 요소에 접근 (태그까지 모두 출력됨)
+
+      container.innerText = "Hello<b>^^</b>"; //태그 안의 내용 제외 후 출력
+      container.innerHTML = "Hello<b>^^</b>"; //태그 내용까지 출력 가능
+
+      console.log(container.className);
+      container.className = "container green";
+
+      console.log(container.classList);
+      console.log(container.classList.contains("red"));
+      if (contianer.classList.contains("red"))
+        container.classList.remove("red");
+      else container.classList.add("red");
+
+      // contianer.classList.toggle("red") // 위의 if문을 축약해놓은 함수
+
+      console.log(container.textConttent);
+      const input = document.getElementById("email-input");
+      input.setAttribute("placeholder", "이메일을 입력해주세용"); // 태그의 속성을 설정할 수 있는 함수.
+      console.log(input.getAttribute("placeholder"));
+
+      const body = document.querySelector("body")
+      console.log(body.children[0])
+
+      //1. 자식 노드에 접근
+      const test = document.querySeletor(".test-parent")
+      //2. 부모 노드에 접근
+      console.log(test.parentNode) // 요소가 아닌 것도 반환이 가능하다.
+      console.log(test.parentElement) //요소만 반환 가능. 요소가 없으면 null.
+      //3. 형제 노드에 접근 (이전, 다음)
+      console.log(test.nextElementSibling) // 요소의 다음 형제 요소를 찾음.
+      console.log(test.previousElementSibling) // 요소의 이전 형제 요소를 찾음.
+      console.log(test.nextSibling) // 요소의 다음 텍스트를 찾음
+      console.log(test.previousSibling) // 요소의 이전 텍스트를 찾음
+    </script>
+  </body>
+</html>

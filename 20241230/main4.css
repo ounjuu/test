@@ -1,0 +1,30 @@
+.container {
+  width: 800px;
+}
+
+.header {
+  width: 100%;
+  height: 100px;
+  background-color: aquamarine;
+}
+
+.leftbox {
+  width: 40%;
+  height: 400px;
+  background-color: rgb(164, 164, 241);
+  float: left;
+}
+
+.rightbox {
+  width: 60%;
+  height: 400px;
+  background-color: rgba(215, 108, 174, 0.92);
+  float: left;
+}
+
+.footer {
+  width: 100%;
+  height: 100px;
+  background-color: blueviolet;
+  clear: left;
+}

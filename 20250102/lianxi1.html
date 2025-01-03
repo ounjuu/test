@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let fruits1 = [
+        "사과",
+        "딸기",
+        "파인애플",
+        "수박",
+        "참외",
+        "오렌지",
+        "자두",
+        "망고",
+      ];
+      let fruits2 = ["수박", "사과", "참외", "오렌지", "파인애플", "망고"];
+      let same = fruits1.filter((fruit) => fruits2.includes(fruit));
+      let diff = fruits1.filter((fruit) => !fruits2.includes(fruit));
+      console.log("같은 요소", same);
+      console.log("서로 다른 요소", diff);
+
+      let date = new Date();
+      console.log(("0" + date.getMonth() + 1).slice(-2));
+      console.log(("0" + date.getDate()).slice(-2));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let numbers = [];
+      for (let i = 1; i <= 100; i++) {
+        numbers.push(i);
+      }
+      console.log(numbers);
+
+      let add1 = 0;
+      for (let i = 0; i < 100; i++) {
+        add1 += numbers[i];
+      }
+      console.log("for문: " + add1);
+
+      let add2 = 0;
+      for (let num of numbers) {
+        add2 += num;
+      }
+      console.log("for of문: " + add2);
+
+      let add3 = 0;
+      numbers.forEach((num) => {
+        add3 += num;
+      });
+      console.log("forEach문: " + add3);
+    </script>
+  </body>
+</html>

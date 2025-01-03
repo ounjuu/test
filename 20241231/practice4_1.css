@@ -1,0 +1,15 @@
+/* thead tr th {
+  border: solid, 1px;
+  padding: 5px;
+} */
+
+table {
+  margin-top: 20px;
+  border: 1px solid #444444;
+}
+th,
+td {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #444444;
+}

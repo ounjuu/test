@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./practice2.css" />
+  </head>
+  <body>
+    <!-- 입력 영역 -->
+    <div>
+      <label for="date">날짜: </label><input type="text" id="dateInput" /><br />
+      <label for="content">내용: </label
+      ><input type="text" id="contentInput" /><br />
+      <button onclick="addEventclass()" id="addEvent">작성</button><br />
+    </div>
+    <div class="contianer">
+      <h1>2025년 1월</h1>
+      <table id="datetable">
+        <thead id="datetableth">
+          <tr>
+            <th class="sunday">日</th>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th class="saturday">土</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+          <tr id="trs">
+            <td class="days">-</td>
+            <td>-</td>
+            <td>-</td>
+            <td class="days">1</td>
+            <td class="day2">2</td>
+            <td class="day3">3</td>
+            <td class="saturday" class="day4">4</td>
+          </tr>
+          <tr>
+            <td class="sunday">5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td class="saturday">11</td>
+          </tr>
+          <tr>
+            <td class="sunday">12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td class="saturday">18</td>
+          </tr>
+          <tr>
+            <td class="sunday">19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td class="saturday">25</td>
+          </tr>
+          <tr>
+            <td class="sunday">26</td>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td class="saturday">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <!-- JS -->
+  <script>
+    const addEventclass = () => {
+      const dateInput = document.getElementById("dateInput").value.trim();
+      const contentInput = document.getElementById("contentInput").value.trim();
+      const aaa = document.querySelectorAll("td");
+      for (let i = 0; i < aaa.length; i++) {
+        if (dateInput === aaa[i].innerText) {
+          //console.log(aaa[i].innerText); //
+          const targetCell = document.querySelectorAll("td")[i];
+
+          let eventDiv = targetCell.querySelector(".event");
+          if (eventDiv !== "") {
+            eventDiv = document.createElement("div");
+            eventDiv.className = "event";
+            targetCell.appendChild(eventDiv);
+          }
+          eventDiv.textContent = contentInput;
+        }
+      }
+      document.getElementById("dateInput").value = "";
+      document.getElementById("contentInput").value = "";
+    };
+    // 찾은 요소의 자식을 삭제
+    // 색상변경 //
+    document
+      .getElementById("datetableth")
+      .getElementsByTagName("tr")[0]
+      .getElementsByTagName("th")[0].style.color = "red";
+
+    document
+      .getElementById("datetableth")
+      .getElementsByTagName("tr")[0]
+      .getElementsByTagName("th")[6].style.color = "blue";
+
+    for (let i = 0; i < 5; i++) {
+      document
+        .getElementById("tbody")
+        .getElementsByTagName("tr")
+        [i].getElementsByTagName("td")[0].style.color = "red";
+    }
+
+    for (let i = 0; i < 5; i++) {
+      document
+        .getElementById("tbody")
+        .getElementsByTagName("tr")
+        [i].getElementsByTagName("td")[6].style.color = "blue";
+    }
+  </script>
+</html>
