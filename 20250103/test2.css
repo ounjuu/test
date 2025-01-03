@@ -1,0 +1,44 @@
+.menubar1 {
+  display: flex;
+  background-color: rgb(144, 215, 243);
+  margin: 0px auto;
+  height: 100px;
+}
+.menubar2 {
+  display: flex;
+  background-color: rgb(221, 243, 252);
+  margin: 0px auto;
+  display: none;
+}
+
+.menu {
+  padding: 10px;
+}
+
+.menubox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menubox2 {
+  width: 100%;
+  display: none;
+  text-align: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .menubar2 {
+    display: block;
+    div {
+      width: 100%;
+    }
+  }
+  .menubox {
+    display: none;
+  }
+  .menubox2 {
+    display: block;
+  }
+}
