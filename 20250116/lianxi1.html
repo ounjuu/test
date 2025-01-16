@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="lianxi1.css" />
+  </head>
+  <body>
+    <div class="alert-box">알림창</div>
+    <button onclick="add()">버튼</button>
+    <button onclick="sub()">버튼</button>
+    <button onclick="divide()">버튼</button>
+    <button onclick="mul()">버튼</button>
+    <script>
+      let add = () => {
+        const num1 = prompt("첫 번째 숫자를 입력해주세요.");
+        const num2 = prompt("두 번째 숫자를 입력해주세요.");
+        return alert(Number(num1) + Number(num2) + "입니다.");
+      };
+    </script>
+  </body>
+</html>
