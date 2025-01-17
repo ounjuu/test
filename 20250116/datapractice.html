@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        max-width: 1000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-wrap">
+      <!-- <table>
+        <thead>
+          <tr>
+            <th>이름</th>
+            <th>나이</th>
+            <th>커리어</th>
+            <th>별명</th>
+          </tr>
+        </thead>
+        <tbody> -->
+      <!-- <tr>
+            <td>김철수</td>
+            <td>14</td>
+            <td>놀기,<br />먹기,<br />자기,<br />숨쉬기</td>
+            <td>김안철수,<br />김김안철수,<br />박터짐</td>
+          </tr> -->
+      <!-- <tr>
+            <td>영희</td>
+            <td>35</td>
+            <td>놀기,<br />자전거타기,<br />오렌지먹기,<br />사과부시기</td>
+            <td>
+              김영희,<br />
+              야생사자,<br />
+              오올이
+            </td>
+          </tr> -->
+      <!-- <tr>
+            <td>박광철</td>
+            <td>20</td>
+            <td>
+              일수나가기,<br />돈빌려주기,<br />공무집행방해하기,<br />무면허운전하기
+            </td>
+            <td>
+              대흥역호랑이와사자두마리,<br />마포불주먹,<br />전설,<br />경찰의적
+            </td>
+          </tr> -->
+      <!-- </tbody>
+      </table> -->
+    </div>
+  </body>
+  <script>
+    const data = [
+      {
+        id: 1,
+        name: "김철수",
+        age: 14,
+        careers: [
+          { title: "놀기" },
+          { title: "먹기" },
+          { title: "자기" },
+          { title: "숨쉬기" },
+        ],
+        nickName: [
+          { name: "김안철수" },
+          { name: "김김안철수" },
+          { name: "박터짐" },
+        ],
+      },
+      {
+        id: 2,
+        name: "영희",
+        age: 35,
+        careers: [
+          { title: "놀기" },
+          { title: "자전거타기" },
+          { title: "오렌지먹기" },
+          { title: "사과부시기" },
+        ],
+        nickName: [
+          { name: "김영희" },
+          { name: "야생사자" },
+          { name: "오올이" },
+        ],
+      },
+      {
+        id: 3,
+        name: "박광철",
+        age: 20,
+        careers: [
+          { title: "일수나가기" },
+          { title: "돈빌려주기" },
+          { title: "공무집행방해하기" },
+          { title: "무면허운전하기" },
+        ],
+        nickName: [
+          { name: "대흥역호랑이와사자두마리" },
+          { name: "마포불주먹" },
+          { name: "전설" },
+          { name: "경찰의적" },
+        ],
+      },
+    ];
+    const tableWrap = document.querySelector(".main-wrap");
+    tableWrap.innerHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th>이름</th>
+            <th>나이</th>
+            <th>커리어</th>
+            <th>별명</th>
+          </tr>
+        </thead>
+        <tbody class="tablebody">
+        </tbody>
+      </table>
+      `;
+    const dataAll = data.map((x, i) => {
+      const careersList = x.careers.map((a, b) => {
+        return `${a.title}<br>`;
+      });
+
+      const nickNameList = x.nickName.map((a, b) => {
+        return `${a.name}<br>`;
+      });
+
+      // console.log(careersList, "리스트");
+      // console.log(nickNameList, "d리스트");
+
+      return `<tr id=${x.id} onclick=alertAll(${x.id})>
+            <td>${x.name}</td>
+            <td>${x.age}</td>
+            <td>${careersList.join("")}</td>
+            <td>${nickNameList.join("")}</td>
+          </tr>`;
+    });
+
+    const tbody = document.querySelector(".tablebody");
+    tbody.innerHTML = dataAll.join("");
+
+    // alert 띄우기
+    const alertAll = (id) => {
+      data.forEach((x, i) => {
+        const careersList2 = x.careers.map((a, b) => {
+          return a.title;
+        });
+
+        const nickNameList2 = x.nickName.map((a, b) => {
+          return a.name;
+        });
+        let age1 = "성인";
+        if (id === x.id) {
+          if (x.age < 20) {
+            age1 = "미성년자";
+          }
+          alert(
+            `이 사람의 이름은 ${x.name}이고, 나이는 ${x.age}이며, ${age1}입니다. 커리어는 ${careersList2}가 있고, 별명으로는 ${nickNameList2}가 있습니다.`
+          );
+        }
+      });
+    };
+
+    // 3번째
+
+    // 1. 미성년자는 000이 있고 그 사람의 커리어는 careers가 있으며 별명은
+    // nickName입니다.
+
+    // 미성년자를 찾는 함수
+    // const notadult = data.filter((x) => x.age < 20);
+    // const notadultname = notadult.map((a, b) => {
+    //   return a.name;
+    // });
+
+    // return;
+    // console.log(notadultname);
+    // console.log(notadultcareers);
+    // // 테이블 아래에 글씨 추가
+    // const paragraph = document.createElement("p");
+    // paragraph.textContent = "이 테이블은 JavaScript로 생성되었습니다.";
+    // paragraph.style.marginTop = "10px"; // 테이블과의 간격 조정
+    // paragraph.style.color = "blue"; // 글씨 색상 설정
+
+    // // 테이블의 부모 요소에 추가
+    // document.body.appendChild(paragraph);
+    // innerHTML = "";
+  </script>
+</html>
