@@ -5,20 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f4f4f9;
+      }
+
       .main-wrap {
         width: 100%;
-        margin: 0 auto;
         padding: 20px;
+        box-sizing: border-box;
       }
+
       table {
+        margin: 0 auto;
         max-width: 1000px;
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ffffff;
       }
-      table,
+
       th,
       td {
         border: 1px solid black;
-        border-collapse: collapse;
         text-align: center;
+        padding: 8px;
+      }
+
+      th {
+        background-color: #f0f0f0;
+      }
+
+      td {
+        word-wrap: break-word;
+      }
+
+      .textbox1 {
+        margin-top: 20px;
+        text-align: center;
+        max-width: 1000px;
+        margin: 20px auto 0;
+      }
+
+      @media (max-width: 768px) {
+        table {
+          font-size: 12px;
+        }
+
+        th,
+        td {
+          padding: 6px;
+        }
+
+        .textbox1 {
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        table {
+          font-size: 10px;
+        }
+
+        th,
+        td {
+          padding: 4px;
+        }
+
+        .textbox1 {
+          font-size: 12px;
+        }
       }
     </style>
   </head>
@@ -244,6 +304,6 @@
 
     // 테이블 하단 텍스트 박스
     const textbox1 = document.querySelector(".textbox1");
-    textbox1.innerHTML = `1. 미성년자는 ${notadultname}가 있고 그 사람의 커리어는 ${notadultcareers}가 있으며 별명은 ${notadultnickName}입니다. 2. 성인은 ${adultname}이 있고 ${adultname[0]}의 커리어는 ${adultcareers[0]}가 있으며 별명은 ${adultnickName[0]}입니다. ${adultname[1]}의 커리어는 ${adultcareers[1]}가 있으며 별명은 ${adultnickName[1]}입니다. 3. 별명이 가장 긴 사람은 ${longnametext}입니다.`;
+    textbox1.innerHTML = `1. 미성년자는 ${notadultname}가 있고 그 사람의 커리어는 ${notadultcareers}가 있으며 별명은 ${notadultnickName}입니다. <br/>2. 성인은 ${adultname}이 있고 ${adultname[0]}의 커리어는 ${adultcareers[0]}가 있으며 별명은 ${adultnickName[0]}입니다. ${adultname[1]}의 커리어는 ${adultcareers[1]}가 있으며 별명은 ${adultnickName[1]}입니다. <br/>3. 별명이 가장 긴 사람은 ${longnametext}입니다.`;
   </script>
 </html>
