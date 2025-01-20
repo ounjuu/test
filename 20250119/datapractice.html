@@ -201,9 +201,6 @@
         return `${a.name}<br>`;
       });
 
-      // console.log(careersList, "리스트");
-      // console.log(nickNameList, "d리스트");
-
       return `<tr id=${x.id} onclick=alertAll(${x.id})>
             <td>${x.name}</td>
             <td>${x.age}</td>
@@ -217,21 +214,21 @@
 
     // alert 띄우기
     const alertAll = (id) => {
-      data.forEach((x, i) => {
-        const careersList2 = x.careers.map((a, b) => {
+      const dataAll2 = data.map((x, i) => {
+        const indata1 = x.careers.map((a, b) => {
           return a.title;
         });
-
-        const nickNameList2 = x.nickName.map((a, b) => {
+        const indata2 = x.nickName.map((a, b) => {
           return a.name;
         });
-        let age1 = "성인";
+
+        let adult1 = "성인";
         if (id === x.id) {
-          if (x.age < 20) {
-            age1 = "미성년자";
+          if (x.id < 20) {
+            adult1 = "미성년자";
           }
           alert(
-            `이 사람의 이름은 ${x.name}이고, 나이는 ${x.age}이며, ${age1}입니다. 커리어는 ${careersList2}가 있고, 별명으로는 ${nickNameList2}가 있습니다.`
+            `이름은 ${x.name}이고 나이는 ${x.age}이며 ${adult1} 입니다. 커리어에는 ${indata1}가 있고 별명으로는 ${indata2}(이)가 있습니다.`
           );
         }
       });
@@ -282,26 +279,24 @@
     console.log(adultnickName); // 영희, 광철 별명 > [별명]
 
     //3.별명중 가장 별명이 긴사람을 찾는 알고리즘을 만들어주세요.
-    const longnick = () => {
+    const longname = () => {
       let max = 0;
-      let nametext = "";
-      const nickNames = data.map((a, b) => {
-        return a.nickName;
+      let str;
+      const nicknamefind = data.map((x, i) => {
+        return x.nickName;
       });
-
-      nickNames.map((a, b) => {
-        a.map((c, d) => {
-          if (c.name.length > max) {
-            max = c.name.length;
-            nametext = c.name;
+      const nicknamefind2 = nicknamefind.map((x, i) => {
+        const nicknamefind3 = x.map((a, b) => {
+          if (a.name.length > max) {
+            max = a.name.length;
+            str = a.name;
           }
         });
       });
-      return nametext;
+      return str;
     };
 
-    let longnametext = longnick();
-
+    let longnametext = longname();
     // 테이블 하단 텍스트 박스
     const textbox1 = document.querySelector(".textbox1");
     textbox1.innerHTML = `1. 미성년자는 ${notadultname}가 있고 그 사람의 커리어는 ${notadultcareers}가 있으며 별명은 ${notadultnickName}입니다. <br/>2. 성인은 ${adultname}이 있고 ${adultname[0]}의 커리어는 ${adultcareers[0]}가 있으며 별명은 ${adultnickName[0]}입니다. ${adultname[1]}의 커리어는 ${adultcareers[1]}가 있으며 별명은 ${adultnickName[1]}입니다. <br/>3. 별명이 가장 긴 사람은 ${longnametext}입니다.`;

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    값1: <input type="text" id="value1" /><br />
+    값2: <input type="text" id="value2" /> <br />
+    연산자:<input type="text" id="value3" /> <br />
+    결과:<input type="text" id="value4" /><br /><br />
+    <button id="calculatebtn" onclick="alert()">계산하기</button>
+
+    <button id="reset">초기화</button>
+    <script>
+      document
+        .getElementById("calculatebtn")
+        .addEventListener("click", function () {
+          const value1 = document.getElementById("value1").value;
+          const value2 = document.getElementById("value2").value;
+          const value3 = document.getElementById("value3").value;
+          let result;
+          switch (value3) {
+            case "+":
+              result = Number(value1) + Number(value2);
+              break;
+
+            case "-":
+              result = Number(value1) - Number(value2);
+              break;
+
+            case "*":
+              result = Number(value1) * Number(value2);
+              break;
+
+            case "/":
+              result = Number(value1) / Number(value2);
+              break;
+          }
+          document.getElementById("value4").value = result;
+        });
+
+      document.getElementById("reset").addEventListener("click", function () {
+        document.getElementById("value1").value = "";
+        document.getElementById("value2").value = "";
+        document.getElementById("value3").value = "";
+        document.getElementById("value4").value = "";
+      });
+    </script>
+  </body>
+</html>

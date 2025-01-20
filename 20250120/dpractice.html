@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <div class="input-wrap">
+      <!-- 아이디 숫자로만 / 중복 불가 -->
+      <input
+        type="number"
+        placeholder="아이디를 입력해 주세요."
+        id="idInput"
+      /><br />
+      <div class="idbox"></div>
+      <!-- 이름 중복 가능 -->
+      <input placeholder="이름을 입력해 주세요." id="nameInput" /><br />
+      <div class="namebox"></div>
+      <!-- 나이 숫자 -->
+      <input
+        type="number"
+        placeholder="나이를 입력해 주세요."
+        id="ageInput"
+      /><br />
+      <div class="agebox"></div>
+      <!-- 경력사항 최소 15자리 이상 -->
+      <input placeholder="경력을 입력해 주세요." id="yearInput" /><br />
+      <div class="yearbox"></div>
+      <!-- 별명 최소 2자리 이상 -->
+      <input placeholder="별명을 입력해 주세요." id="charInput" /><br />
+      <div class="charbox"></div>
+      <button id="savebtn" onclick="save()">저장</button>
+      <!-- 테이블 여기에 저장~ -->
+      <div class="main-wrap"></div>
+      <!-- 저장 누를때 함수 실행 > 위의 조건 확인(없으면 어디에 없다고 나와야함 > alert아닌 input밑에 나와야 함) > 데이터 집어넣는 데이터 실행 > 로컬스토리지에 저장 해야함. 이름나이경력사항별명 나와야함-->
+    </div>
+    <script>
+      let data = [];
+      const getDate = JSON.parse(localStorage.getItem("userInfo"));
+      console.log(getDate, "getDate");
+      if (getDate) {
+        data.push(...getDate);
+      }
+
+      const save = () => {
+        const idInput = document.querySelector("#idInput").value;
+        const nameInput = document.querySelector("#nameInput").value;
+        const ageInput = document.querySelector("#ageInput").value;
+        const yearInput = document.querySelector("#yearInput").value;
+        const charInput = document.querySelector("#charInput").value;
+
+        // * 아이디 - 숫자로만 / 중복 불가
+        let idCheck = false;
+        let charCheck = false;
+        let yearCheck = false;
+        let nameCheck = false;
+
+        const idplus = data.filter((item) => item.id === idInput);
+        if (idplus.length > 0) {
+          document.querySelector(".idbox").innerText =
+            "중복입니다. 다른 숫자를 입력하세요.";
+        } else {
+          idCheck = true;
+        }
+
+        // 이름 중복 가능
+        if (charInput.length < 1) {
+          document.querySelector(".namebox").innerText = "이름을 입력하세요.";
+        } else {
+          nameCheck = true;
+        }
+        // 나이 숫자
+        // if (isNaN(ageInput)) {
+        //   document.querySelector(".agebox").innerText =
+        //     "나이는 숫자를 입력하세요.";
+        // }
+
+        // 경력 15자 이상
+        if (yearInput.length < 15) {
+          document.querySelector(".yearbox").innerText =
+            "최소 15자 이상 입력하세요.";
+        } else {
+          yearCheck = true;
+        }
+        // 별명 최소 2자리 이상 / 중복 불가
+        const charplus = data.filter((item) => item.char === charInput);
+        if (charplus.length > 0) {
+          document.querySelector(".charbox").innerText =
+            "중복입니다. 다른 별명을 입력하세요.";
+        } else if (charInput.length < 2) {
+          document.querySelector(".charbox").innerText =
+            "최소 2자 이상 입력하세요.";
+        } else {
+          charCheck = true;
+        }
+
+        // if (text_char === charInput) {
+        //   document.querySelector(".charbox").innerText = "중복입니다.";
+        // }
+        if (
+          idCheck === true &&
+          charCheck === true &&
+          yearCheck === true &&
+          nameCheck === true
+        ) {
+          let userInfo1 = {
+            id: idInput,
+            age: ageInput,
+            year: yearInput,
+            char: charInput,
+          };
+
+          data.push(userInfo1);
+          localStorage.setItem("userInfo", JSON.stringify(data));
+
+          // 로컬 스토리지 내용 테이블에 넣기
+          const dataAll = data.map((x, i) => {
+            return `
+              <tr>
+                <td>${x.id}</td>
+                <td>${x.age}</td>
+                <td>${x.year}</td>
+                <td>${x.char}</td>
+              </tr>`;
+          });
+
+          const tablebody = document.querySelector(".tablebody");
+          tablebody.innerHTML = dataAll.join("");
+        }
+      };
+
+      // 테이블 생성
+      const tableWrap = document.querySelector(".main-wrap");
+      tableWrap.innerHTML = `
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>이름</th>
+                        <th>나이</th>
+                        <th>경력사항</th>
+                        <th>별명</th>
+                      </tr>
+                    </thead>
+                    <tbody class="tablebody">
+                    </tbody>
+                  </table>
+                  <div class="textbox1"></div>
+                  `;
+    </script>
+  </body>
+</html>

@@ -86,26 +86,49 @@
   <!-- JS -->
   <script>
     const addEventclass = () => {
-      const dateInput = document.getElementById("dateInput").value.trim();
+      const dateInput = document.getElementById("dateInput").value.trim(); // 입력 값 가져오기
       const contentInput = document.getElementById("contentInput").value.trim();
-      const aaa = document.querySelectorAll("td");
-      for (let i = 0; i < aaa.length; i++) {
-        if (dateInput === aaa[i].innerText) {
-          //console.log(aaa[i].innerText); //
-          const targetCell = document.querySelectorAll("td")[i];
 
-          let eventDiv = targetCell.querySelector(".event");
-          if (eventDiv !== "") {
+      if (!dateInput || !contentInput) {
+        alert("날짜와 내용을 모두 입력해주세요.");
+        return;
+      }
+
+      // 모든 td 요소 가져오기
+      const targetCells = document.querySelectorAll("td");
+
+      let found = false; // 날짜를 찾았는지 여부
+
+      targetCells.forEach((cell) => {
+        const cellText = cell.innerText.trim(); // 셀 텍스트에서 공백 제거
+
+        if (dateInput === cellText) {
+          found = true; // 날짜를 찾음
+
+          // 기존 이벤트 div 찾기
+          let eventDiv = cell.querySelector(".event");
+
+          if (!eventDiv) {
+            // 이벤트 div가 없으면 새로 생성
             eventDiv = document.createElement("div");
             eventDiv.className = "event";
-            targetCell.appendChild(eventDiv);
+            cell.appendChild(eventDiv);
           }
+
+          // 이벤트 내용 덮어쓰기
           eventDiv.textContent = contentInput;
         }
+      });
+
+      if (!found) {
+        alert("입력한 날짜가 달력에 없습니다.");
       }
+
+      // 입력창 초기화
       document.getElementById("dateInput").value = "";
       document.getElementById("contentInput").value = "";
     };
+
     // 찾은 요소의 자식을 삭제
     // 색상변경 //
     document

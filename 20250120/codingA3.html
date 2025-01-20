@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+  </head>
+  <body>
+    <script>
+      function samgame(hole) {
+        if (hole == 3 || hole == 6 || hole == 9) {
+          console.log("박수");
+        } else if (hole % 10 == 3 || hole % 10 == 6 || hole % 10 == 9) {
+          console.log("박수");
+        } else if (hole % 100 == 3 || hole % 100 == 6 || hole % 100 == 9) {
+          console.log("박수");
+        } else {
+          console.log("통과");
+        }
+      }
+      samgame(37);
+    </script>
+  </body>
+</html>

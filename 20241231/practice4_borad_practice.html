@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <h2>방명록입니다.</h2>
+    <label for="author">작성자:</label>
+    <input type="text" id="author" placeholder="작성자를 입력하세요" /><br />
+    <label for="content">내용:</label>
+    <input type="text" id="content" placeholder="내용을 입력하세요" /><br />
+
+    <button id="entry">작성</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>작성자</th>
+          <th>내용</th>
+          <th>작성일</th>
+        </tr>
+      </thead>
+      <tbody id="guestbookTable">
+        <!-- 항목이 여기에 추가됩니다 -->
+      </tbody>
+    </table>
+
+    <script>
+      let num = 0;
+      document.getElementById("entry").addEventListener("click", function () {
+        const value1 = document.getElementById("author").value;
+        const value2 = document.getElementById("content").value;
+        num++;
+
+        //현재 시간 날짜 구하기
+        let today = new Date();
+        let year = today.getFullYear();
+
+        let month = ("0" + today.getMonth() + 1).slice(-2);
+        let day = ("0" + today.getDate()).slice(-2);
+        let hours = ("0" + today.getHours()).slice(-2);
+        let minutes = ("0" + today.getMinutes()).slice(-2);
+        let seconds = ("0" + today.getSeconds()).slice(-2);
+        let fullDay =
+          year +
+          "-" +
+          month +
+          "-" +
+          day +
+          " " +
+          hours +
+          ":" +
+          minutes +
+          ":" +
+          seconds;
+        const table = document.getElementById("guestbookTable");
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
+        <td>${num}</td>
+        <td>${value1}</td>
+        <td>${value2}</td> 
+        <td>${fullDay}</td>
+        `;
+        table.appendChild(newRow);
+        document.getElementById("author").value = "";
+        document.getElementById("content").value = "";
+      });
+      // 실습 2번 힌트!
+      // 번호에 사용할 변수 선언. (전역변수가 되어야 함!)
+      //let num = 1;
+      //function addComment() {
+      // 1. 작성자 input 의 value 가져오기!
+      // 2. 내용 input의 value 가져오기!
+      // 3. Date 객체를 이용하여 현재 시간 가져오기!
+      // 3-1. Date 객체의 메소드 이용하여 날짜 및 시간 이쁘게 저장!
+      // 4. tr 태그 만들기
+      // 5. td 태그 4개 만들기 및 td 태그 내부에 텍스트(번호, 작성자, 내용, 작성일) 추가하기.
+      // 6. 4번에서 만든 tr 태그에 5번에서 만든 td 태그 4개 추가 하기
+      // 7. table 태그에 tr 태그 추가하기.
+      // 8. num 변수 +1 하기!
+    </script>
+  </body>
+</html>
