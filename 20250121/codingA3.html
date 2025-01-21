@@ -12,15 +12,21 @@
     />
   </head>
   <body>
-    <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand">Navbar</a>
-        <span class="badge bg-dark" style="padding: 10px; border-radius: 50px"
-          >다크 모드로 보기 🔄</span
-        >
-      </div>
-    </nav>
-    <script></script>
+    <div class="p-3 mb-2 bg-warning text-dark">
+      <span>5</span>초 이내 구매시 사은품 증정!
+    </div>
+
+    <script>
+      let count = 5;
+      let countset = setInterval(function () {
+        count--;
+        document.querySelector("span").innerHTML = count;
+      }, 1000);
+
+      setTimeout(function () {
+        document.querySelector(".p-3").style.display = "none";
+      }, 5000);
+    </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

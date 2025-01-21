@@ -148,6 +148,7 @@
                   <table>
                     <thead>
                       <tr>
+                        <th>아이디</th>
                         <th>이름</th>
                         <th>나이</th>
                         <th>경력사항</th>
@@ -167,20 +168,22 @@
           data.push(...getDate);
         }
 
-        // 로컬 스토리지 내용 테이블에 넣기
+        // 데이터 원래꺼 없으면 로컬 스토리지 내용 테이블에 넣기
         const dataAll = data.map((x, i) => {
           return `
               <tr>
                 <td>${x.id}</td>
+                <td>${x.name}</td>
                 <td>${x.age}</td>
                 <td>${x.year}</td>
                 <td>${x.char}</td>
               </tr>`;
         });
-
         const tablebody = document.querySelector(".tablebody");
         tablebody.innerHTML = dataAll.join("");
       };
+
+      // 데이터 저장
       const save = () => {
         const idInput = document.querySelector("#idInput").value;
         const nameInput = document.querySelector("#nameInput").value;
@@ -203,7 +206,7 @@
         }
 
         // 이름 중복 가능
-        if (charInput.length < 1) {
+        if (nameInput.length < 1) {
           document.querySelector(".namebox").innerText = "이름을 입력하세요.";
         } else {
           nameCheck = true;
@@ -238,12 +241,14 @@
         // }
         if (
           idCheck === true &&
+          nameCheck === true &&
           charCheck === true &&
           yearCheck === true &&
           nameCheck === true
         ) {
           let userInfo1 = {
             id: idInput,
+            name: nameInput,
             age: ageInput,
             year: yearInput,
             char: charInput,
@@ -252,12 +257,12 @@
           data.push(userInfo1);
           localStorage.setItem("userInfo", JSON.stringify(data));
 
-          // 요기
           // 로컬 스토리지 내용 테이블에 넣기
           const dataAll = data.map((x, i) => {
             return `
               <tr>
                 <td>${x.id}</td>
+                <td>${x.name}</td>
                 <td>${x.age}</td>
                 <td>${x.year}</td>
                 <td>${x.char}</td>
@@ -268,6 +273,7 @@
           tablebody.innerHTML = dataAll.join("");
 
           document.querySelector(".idbox").innerText = "";
+          document.querySelector(".namebox").innerText = "";
           document.querySelector(".namebox").innerText = "";
           document.querySelector(".yearbox").innerText = "";
           document.querySelector(".charbox").innerText = "";
