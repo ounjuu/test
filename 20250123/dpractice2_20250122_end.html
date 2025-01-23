@@ -40,7 +40,7 @@
         border-color: #555;
         outline: none;
       } */
-
+      /* 
       .svbtn {
         display: block;
         width: 100%;
@@ -56,6 +56,38 @@
 
       .svbtn:hover {
         background-color: #555;
+      } */
+
+      /* 기본 버튼 스타일 */
+      .svbtn {
+        width: 100%;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      /* 활성화된 버튼 스타일 */
+      .svbtn:enabled {
+        background: #db9dfd;
+        color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .svbtn:enabled:hover {
+        background: #cf7ede;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      /* 비활성화된 버튼 스타일 */
+      .svbtn:disabled {
+        background: #ccc;
+        color: #686666;
+        cursor: not-allowed;
+        box-shadow: none;
       }
 
       .idbox,
@@ -118,16 +150,14 @@
         type="number"
         placeholder="아이디를 입력해 주세요."
         id="idInput"
-        oninput="idonInput()"
-        onchange="allonchange()"
+        oninput="allonchange(1)"
       /><br />
       <div class="idbox"></div>
       <!-- 이름 중복 가능 -->
       <input
         placeholder="이름을 입력해 주세요."
         id="nameInput"
-        oninput="nameonInput()"
-        onchange="allonchange()"
+        oninput="allonchange(2)"
       /><br />
       <div class="namebox"></div>
       <!-- 나이 숫자 -->
@@ -135,24 +165,21 @@
         type="number"
         placeholder="나이를 입력해 주세요."
         id="ageInput"
-        oninput="ageonInput()"
-        onchange="allonchange()"
+        oninput="allonchange(3)"
       /><br />
       <div class="agebox"></div>
       <!-- 경력사항 최소 15자리 이상 -->
       <input
         placeholder="경력을 입력해 주세요."
         id="yearInput"
-        oninput="yearonInput()"
-        onchange="allonchange()"
+        oninput="allonchange(4)"
       /><br />
       <div class="yearbox"></div>
       <!-- 별명 최소 2자리 이상 -->
       <input
         placeholder="별명을 입력해 주세요."
         id="charInput"
-        oninput="charonInput()"
-        onchange="allonchange()"
+        oninput="allonchange(5)"
       /><br />
       <div class="charbox"></div>
       <button id="savebtn" class="svbtn" onclick="save()" disabled="true">
@@ -195,10 +222,14 @@
           return `
               <tr>
                 <td>${x.name}</td>
+
                 <td>${x.age}</td>
-                <td>${x.year}</td>
+
+                <td class="years${x.id}">${x.year}</td>
+
                 <td>${x.char}</td>
-                <td><button class="fixbtn" onclick="fixclick(${x.id})" >수정</button><button class="deletebtn" onclick="deleteclick(${x.id})" >삭제</button></td>
+
+                <td><button class="fixbtn${x.id}" onclick="fixclick(${x.id})" >수정</button><button class="deletebtn${x.id}" onclick="deleteclick(${x.id})" >삭제</button></td>
               </tr>`;
         });
         const tablebody = document.querySelector(".tablebody");
@@ -220,11 +251,16 @@
 
       // 실시간 아이디 중복 불가능
       function idonInput() {
+        let regex = /^[0-9]*$/;
         let iddataup = document.querySelector("#idInput").value;
         const idplus2 = data.filter((item) => item.id === iddataup);
         if (idplus2.length > 0) {
           document.querySelector(".idbox").innerText =
             "중복입니다. 다른 숫자를 입력하세요.";
+          idCheck2 = false;
+        } else if (!regex) {
+          document.querySelector(".idbox").innerText = "숫자를 입력하세요.";
+          idCheck2 = false;
         } else {
           document.querySelector(".idbox").innerText = "";
           idCheck2 = true;
@@ -243,15 +279,17 @@
       //   }
       // }
 
-      // 실시간 이름 숫자금지 / 1글자 이상
+      // 실시간 이름&숫자금지 / 1글자 이상
       function nameonInput() {
         const regex2 = /^[ㄱ-ㅎ가-힣a-zA-Z]+$/;
         let namedataup = document.querySelector("#nameInput").value;
         if (namedataup.length < 1) {
           document.querySelector(".namebox").innerText = "이름을 입력하세요.";
+          nameCheck2 = false;
         } else if (!regex2.test(namedataup)) {
           document.querySelector(".namebox").innerText =
             "영문이나 한글을 입력하세요.";
+          nameCheck2 = false;
         } else {
           document.querySelector(".namebox").innerText = "";
           nameCheck2 = true;
@@ -264,6 +302,7 @@
         if (agedataup > 150) {
           document.querySelector(".agebox").innerText =
             "나이를 다시 입력하세요.";
+          ageCheck2 = false;
         } else {
           document.querySelector(".agebox").innerText = "";
           ageCheck2 = true;
@@ -276,6 +315,7 @@
         if (agedataup.length < 15) {
           document.querySelector(".yearbox").innerText =
             "최소 15자 이상 입력하세요.";
+          yearCheck2 = false;
         } else {
           document.querySelector(".yearbox").innerText = "";
           yearCheck2 = true;
@@ -289,9 +329,11 @@
         if (charplus2.length > 0) {
           document.querySelector(".charbox").innerText =
             "중복입니다. 다른 별명을 입력하세요.";
+          charCheck2 = false;
         } else if (chardataup.length < 2) {
           document.querySelector(".charbox").innerText =
             "최소 2자 이상 입력하세요.";
+          charCheck2 = false;
         } else {
           document.querySelector(".charbox").innerText = "";
           charCheck2 = true;
@@ -299,8 +341,20 @@
       }
       // 저장 버튼 비활성화
       // 조건 만족하면 저장 버튼 활성화
-      function allonchange() {
+      function allonchange(index) {
+        if (index == 1) {
+          idonInput();
+        } else if (index == 2) {
+          nameonInput();
+        } else if (index == 3) {
+          ageonInput();
+        } else if (index == 4) {
+          yearonInput();
+        } else if (index == 5) {
+          charonInput();
+        }
         let savebtn = document.querySelector("#savebtn");
+        console.log(idCheck2);
         if (
           idCheck2 === true &&
           nameCheck2 === true &&
@@ -308,94 +362,33 @@
           yearCheck2 === true &&
           ageCheck2 === true
         ) {
-          console.log("완료");
           savebtn.disabled = false;
         } else {
-          console.log("미완료");
           savebtn.disabled = true;
         }
       }
       // 저장 버튼 누르면 데이터 저장
-      const save = () => {
-        const idInput = document.querySelector("#idInput").value;
-        const nameInput = document.querySelector("#nameInput").value;
-        const ageInput = document.querySelector("#ageInput").value;
-        const yearInput = document.querySelector("#yearInput").value;
-        const charInput = document.querySelector("#charInput").value;
-
-        // * 아이디 - 숫자로만 / 중복 불가
-        let idCheck = false;
-        let nameCheck = false;
-        let ageCheck = false;
-        let charCheck = false;
-        let yearCheck = false;
-
-        // 아이디 중복 불가능
-        const idplus = data.filter((item) => item.id === idInput);
-        if (idplus.length > 0) {
-          document.querySelector(".idbox").innerText =
-            "중복입니다. 다른 숫자를 입력하세요.";
-        } else {
-          idCheck = true;
-        }
-
-        // 이름 중복 가능
-        const regex = /^[ㄱ-ㅎ가-힣a-zA-Z]+$/;
-
-        if (nameInput.length < 1) {
-          document.querySelector(".namebox").innerText = "이름을 입력하세요.";
-        } else if (!regex.test(nameInput)) {
-          document.querySelector(".namebox").innerText =
-            "영문이나 한글을 입력하세요.";
-        } else {
-          nameCheck = true;
-        }
-
-        // 나이 숫자 제한 (150세까지)
-        if (ageInput > 150) {
-          document.querySelector(".agebox").innerText =
-            "나이를 다시 입력하세요.";
-        } else {
-          ageCheck = true;
-        }
-        // 나이 숫자
-        // if (isNaN(ageInput)) {
-        //   document.querySelector(".agebox").innerText =
-        //     "나이는 숫자를 입력하세요.";
-        // }
-
-        // 경력 15자 이상
-        if (yearInput.length < 15) {
-          document.querySelector(".yearbox").innerText =
-            "최소 15자 이상 입력하세요.";
-        } else {
-          yearCheck = true;
-        }
-        // 별명 최소 2자리 이상 / 중복 불가
-        const charplus = data.filter((item) => item.char === charInput);
-        if (charplus.length > 0) {
-          document.querySelector(".charbox").innerText =
-            "중복입니다. 다른 별명을 입력하세요.";
-        } else if (charInput.length < 2) {
-          document.querySelector(".charbox").innerText =
-            "최소 2자 이상 입력하세요.";
-        } else {
-          charCheck = true;
-        }
-
-        // if (text_char === charInput) {
-        //   document.querySelector(".charbox").innerText = "중복입니다.";
-        // }
-        // 저장 버튼 비활성화
-        // 조건 만족하면 저장 버튼 활성화
+      function save() {
+        // 1번 검사
+        idonInput();
+        nameonInput();
+        ageonInput();
+        yearonInput();
+        charonInput();
 
         if (
-          idCheck === true &&
-          nameCheck === true &&
-          charCheck === true &&
-          yearCheck === true &&
-          ageCheck === true
+          idCheck2 === true &&
+          nameCheck2 === true &&
+          charCheck2 === true &&
+          yearCheck2 === true &&
+          ageCheck2 === true
         ) {
+          const idInput = document.querySelector("#idInput").value;
+          const nameInput = document.querySelector("#nameInput").value;
+          const ageInput = document.querySelector("#ageInput").value;
+          const yearInput = document.querySelector("#yearInput").value;
+          const charInput = document.querySelector("#charInput").value;
+
           let userInfo1 = {
             id: idInput,
             name: nameInput,
@@ -413,14 +406,13 @@
               <tr>
                 <td>${x.name}</td>
                 <td>${x.age}</td>
-                <td>${x.year}</td>
+                <td class="years${x.id}">${x.year}</td>
                 <td>${x.char}</td>
-                <td><button class="fixbtn" onclick="fixclick(${x.id})" >수정</button><button class="deletebtn" onclick="deleteclick(${x.id})" >삭제</button></td>`;
+                <td><button class="fixbtn${x.id}" onclick="fixclick(${x.id})">수정</button><button class="deletebtn${x.id}" onclick="deleteclick(${x.id})" >삭제</button></td>`;
           });
 
           const tablebody = document.querySelector(".tablebody");
           tablebody.innerHTML = dataAll.join("");
-
           document.querySelector("#idInput").value = "";
           document.querySelector("#nameInput").value = "";
           document.querySelector("#ageInput").value = "";
@@ -433,10 +425,14 @@
           document.querySelector(".yearbox").innerText = "";
           document.querySelector(".charbox").innerText = "";
           // 버튼 비활성화
+          let savebtn = document.querySelector("#savebtn");
+          savebtn.disabled = true;
+        } else {
           savebtn.disabled = true;
         }
-      };
-      // 데이터 삭제 버튼 ㅜㅜ
+      }
+
+      // 데이터 삭제 버튼
 
       const deleteclick = (x) => {
         let deleteData = data.filter((item) => item.id !== String(x));
@@ -449,17 +445,18 @@
           data = deleteData;
           localStorage.setItem("userInfo", JSON.stringify(data));
         }
+
         // 테이블 업데이트
         const dataAll = data.map((x, i) => {
           return `
       <tr>
-        <td>${x.name}</td>
-        <td>${x.age}</td>
-        <td>${x.year}</td>
+        <td class="name${x.id}">${x.name}</td>
+        <td class="age${x.id}">${x.age}</td>
+        <td class="years${x.id}">${x.year}</td>
         <td>${x.char}</td>
         <td>
-          <button class="fixbtn" onclick="fixclick(${x.id})">수정</button>
-          <button class="deletebtn" onclick="deleteclick(${x.id})">삭제</button>
+          <button class="fixbtn${x.id}" onclick="fixclick(${x.id} data-type='')">수정</button>
+          <button class="deletebtn${x.id}" onclick="deleteclick(${x.id})">삭제</button>
         </td>
       </tr>`;
         });
@@ -468,23 +465,116 @@
         tablebody.innerHTML = dataAll.join("");
       };
 
-      // 데이터 수정 버튼 ㅠㅠ
-      let countfixclick = 0;
+      // 데이터 수정 버튼
+      let countfixclick = false;
+
+      const yearonInput2 = (x) => {
+        console.log("yearonInput2");
+        let agedataup = document.querySelector(`.fixinput${x}`).value;
+        if (agedataup.length < 15) {
+          document.querySelector(`.fixbox${x}`).innerText =
+            "최소 15자 이상 입력하세요.";
+          countfixclick = false;
+        } else {
+          document.querySelector(`.fixbox${x}`).innerText = "";
+          countfixclick = true;
+        }
+      };
+
       const fixclick = (x) => {
         let fixData = data.filter((item) => item.id === String(x));
         const getDates = JSON.parse(localStorage.getItem("userInfo"));
 
-        console.log(fixData);
-        console.log(getDates);
+        // let fixData1 = { ...fixData[0] };
+        let fixData2 = fixData.map((x, i) => {
+          return x.id;
+        });
+        let getDates2 = getDates.map((a, b) => {
+          return a.id;
+        });
+        let getDatesyear = getDates.map((a, b) => {
+          return a.year;
+        });
 
-        if (countfixclick % 2 !== 0) {
-          document.querySelectorAll(".fixbtn").innerText = "수정완료";
-        } else if (countfixclick % 2 === 0) {
-          document.querySelectorAll(".fixbtn").innerText = "수정";
+        if (!countfixclick) {
+          //수정완료 표시
+          document.querySelector(`.fixbtn${x}`).innerText = "수정완료";
+
+          // 데이터 수정 input창 만들기 ㅠㅅㅠ
+          let fixInputValue = document.querySelector(`.years${x}`).innerText;
+
+          document.querySelector(
+            `.years${x}`
+          ).innerHTML = `<input value =${fixInputValue} class="fixinput${x}" oninput="yearonInput2(${x})"><div class="fixbox${x}"></div>`;
+        } else {
+          //수정 표신
+          document.querySelector(`.fixbtn${x}`).innerText = "수정";
+
+          const yearInput1 = document.querySelector(".fixinput");
+          const yearInput2 = document.querySelector(".fixinput").value;
+
+          // if (yearInput2.length < 15) {
+          //   document.getElementById(`yearbox2${x}`).innerText =
+          //     "경력은 15자 이상 적어주세요.";
+          //   return;
+          // }
+
+          // if (yearInput3.length < 15) {
+          //   const textp = document.createElement("p");
+          //   const intext = document.createTextNode("15자 이상 적어주세요.");
+          //   textp.appendChild(intext);
+          //   document.querySelector(`.years${x}`).appendChild(textp);
+          // }
+
+          const data1 = data.map((item) => {
+            const sample = x === Number(item.id);
+            if (sample) {
+              return {
+                ...item,
+                year: yearInput2,
+              };
+            } else {
+              return item;
+            }
+          });
+          data = data1;
+          localStorage.setItem("userInfo", JSON.stringify(data));
+          document.querySelector(`.years${x}`).innerHTML = `${yearInput2}`;
         }
-        const fixbtn = document.querySelector(".fixbtn");
-        const deletebtn = document.querySelector(".deletebtn");
+
+        //console.log(fixData); 작은 배열
+        //console.log(getDates); 큰 배열
+
+        // 수정버튼 if문 끝
       };
+
+      // const allCheckFunction = (id, type) => {
+      //   const docu = document.querySelector(
+      //     `${
+      //       type === "name"
+      //         ? ".name" + id
+      //         : type === "age"
+      //         ? ".age" + id
+      //         : ".years" + id
+      //     }`
+      //   );
+
+      //   // 코멘트 담을거
+      //   let comment;
+
+      //   if (type === "age") {
+      //     // 나이일떄
+      //     if (docu.value >= 150) {
+      //       comment = `<div>150이하로 작성해 주세요.</div>`;
+      //     } else {
+      //       comment = ``;
+      //     }
+      //   } else {
+      //     if (docu.length < 15) {
+      //       comment = `<div>15자 이상 작성해 주세요.</div>`;
+      //     }
+      //   }
+      // };
     </script>
   </body>
 </html>

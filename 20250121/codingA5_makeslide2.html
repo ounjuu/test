@@ -60,26 +60,31 @@
     <button class="next">다음</button>
     <button class="before">이전</button>
     <script>
-      let photocount = 1;
+      let nowphoto = 1;
       document.querySelector(".next").addEventListener("click", function () {
-        if (photocount === 1) {
+        if (nowphoto === 1) {
           document.querySelector(".slide-container").style.transform =
             "translateX(-100vw)";
-          photocount += 1;
-        } else if (photocount === 2) {
+          nowphoto += 1;
+        } else if (nowphoto === 2) {
           document.querySelector(".slide-container").style.transform =
             "translateX(-200vw)";
-          photocount += 1;
+          nowphoto += 1;
+        } else if (nowphoto === 3) {
+          document.querySelector(".slide-container").style.transform =
+            "translateX(-300vw)";
+          nowphoto += 1;
         }
       });
+
       document.querySelector(".before").addEventListener("click", function () {
-        if (photocount <= 0) {
+        if (nowphoto <= 0) {
           document.querySelector(".slide-container").style.transform =
             "translateX(0vw)";
         } else {
           document.querySelector(".slide-container").style.transform =
-            "translateX(-" + (photocount - 2) + "00vw)";
-          photocount -= 1;
+            "translateX(-" + (nowphoto - 2) + "00vw)";
+          nowphoto -= 1;
         }
       });
     </script>

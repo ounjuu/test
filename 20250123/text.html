@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .linecell {
+        display: flex;
+      }
+      .titles {
+        width: 20%;
+      }
+
+      .table {
+        max-width: 1000px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="table">
+      <div>
+        <div class="linecell">
+          <div class="titles">제목</div>
+          <div class="titles">제목</div>
+          <div class="titles">제목</div>
+          <div class="titles">재목</div>
+          <div class="titles">제목</div>
+        </div>
+        <div class="linecell">
+          <div class="">
+            안녕하세요1<br />
+            <input value="입력칸" /><br />
+            <div>"입력해주숑"</div>
+          </div>
+          <div>
+            안녕하세요12<br />
+            <input value="입력칸" /><br />
+            <div>"입력해주숑"</div>
+          </div>
+          <div>
+            안녕하세요133<br />
+            <input value="입력칸" /><br />
+            <div>"입력해주숑"</div>
+          </div>
+          <div>
+            안녕하세요12<br />
+            <input value="입력칸" /><br />
+            <div>"입력해주숑"</div>
+          </div>
+          <div>
+            안녕하세요12<br />
+            <input value="입력칸" /><br />
+            <div>"입력해주숑"</div>
+          </div>
+        </div>
+        <div class="linecell">
+          <div>안녕하세요1</div>
+          <div>안녕하세요12</div>
+          <div>안녕하세요133</div>
+          <div>안녕하세요14</div>
+          <div>안녕하세요15</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- 
+// 데이터 원래꺼 없으면 로컬 스토리지 내용 테이블에 넣기
+const dataAll = data.map((x, i) => {
+  return `
+      <div>
+        <div class="name${x.id}">${x.name}</div>
+        <div class="age${x.id}">${x.age}</div>
+        <div class="years${x.id}">${x.year}</div>
+        <div class="char${x.id}">${x.char}</div>
+        <div><button class="fixbtn${x.id}" onclick="fixclick(${x.id})" >수정</button>
+        <button class="deletebtn${x.id}" onclick="deleteclick(${x.id})" >삭제</button></div>
+        </div>`;
+}); -->
+
+<!-- input.value ="" 비우기........ -->
+
+<!-- // const allCheckFunction = (id, type) => {
+    //   const docu = document.querySelector(
+    //     `${
+    //       type === "name"
+    //         ? ".name" + id
+    //         : type === "age"
+    //         ? ".age" + id
+    //         : ".years" + id
+    //     }`
+    //   );
+
+      //   // 코멘트 담을거
+      //   let comment;
+
+      //   if (type === "age") {
+      //     // 나이일떄
+      //     if (docu.value >= 150) {
+      //       comment = `<div>150이하로 작성해 주세요.</div>`;
+      //     } else {
+      //       comment = ``;
+      //     }
+      //   } else {
+      //     if (docu.length < 15) {
+      //       comment = `<div>15자 이상 작성해 주세요.</div>`;
+      //     }
+      //   }
+      // }; -->
