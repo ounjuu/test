@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .input-wrap {
+        max-width: 1000px;
+        margin: 0 auto 20px;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="number"],
+      input[type="text"],
+      input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.3s ease;
+      }
+
+      /* input:focus {
+        border-color: #555;
+        outline: none;
+      } */
+      /* 
+      .svbtn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: default;
+        transition: background-color 0.3s ease;
+      }
+
+      .svbtn:hover {
+        background-color: #555;
+      } */
+
+      /* 기본 버튼 스타일 */
+      .svbtn {
+        width: 100%;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      /* 활성화된 버튼 스타일 */
+      .svbtn:enabled {
+        background: #db9dfd;
+        color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .svbtn:enabled:hover {
+        background: #cf7ede;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      /* 비활성화된 버튼 스타일 */
+      .svbtn:disabled {
+        background: #ccc;
+        color: #686666;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+
+      .idbox,
+      .namebox,
+      .agebox,
+      .yearbox,
+      .charbox {
+        margin: 5px 0 10px;
+        color: #d9534f;
+        font-size: 14px;
+      }
+
+      .main-wrap {
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      .textbox1 {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="input-wrap">
+      <!-- 아이디 숫자로만 / 중복 불가 -->
+      <input
+        type="number"
+        placeholder="아이디를 입력해 주세요."
+        id="idInput"
+        oninput="allonchange(1)"
+      /><br />
+      <div class="idbox"></div>
+      <!-- 이름 중복 가능 -->
+      <input
+        placeholder="이름을 입력해 주세요."
+        id="nameInput"
+        oninput="allonchange(2)"
+      /><br />
+      <div class="namebox"></div>
+      <!-- 나이 숫자 -->
+      <input
+        type="number"
+        placeholder="나이를 입력해 주세요."
+        id="ageInput"
+        oninput="allonchange(3)"
+      /><br />
+      <div class="agebox"></div>
+      <!-- 경력사항 최소 15자리 이상 -->
+      <input
+        placeholder="경력을 입력해 주세요."
+        id="yearInput"
+        oninput="allonchange(4)"
+      /><br />
+      <div class="yearbox"></div>
+      <!-- 별명 최소 2자리 이상 -->
+      <input
+        placeholder="별명을 입력해 주세요."
+        id="charInput"
+        oninput="allonchange(5)"
+      /><br />
+      <div class="charbox"></div>
+      <button id="savebtn" class="svbtn" onclick="save()" disabled="true">
+        저장
+      </button>
+      <!-- 테이블 여기에 저장~ -->
+      <div class="main-wrap"></div>
+      <!-- 저장 누를때 함수 실행 > 위의 조건 확인(없으면 어디에 없다고 나와야함 > alert아닌 input밑에 나와야 함) > 데이터 집어넣는 데이터 실행 > 로컬스토리지에 저장 해야함. 이름나이경력사항별명 나와야함-->
+    </div>
+    <script>
+      // 테이블 생성
+      const tableWrap = document.querySelector(".main-wrap");
+      tableWrap.innerHTML = `
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>이름</th>
+                              <th>나이</th>
+                              <th>경력사항</th>
+                              <th>별명</th>
+                              <th>관리</th>
+                            </tr>
+                          </thead>
+                          <tbody class="tablebody">
+                          </tbody>
+                        </table>
+                        <div class="textbox1"></div>
+                        `;
+
+      let data = [];
+      window.onload = function () {
+        const getDate = JSON.parse(localStorage.getItem("userInfo"));
+        if (getDate) {
+          data.push(...getDate);
+        } else if (!getDate) {
+        }
+
+        // 데이터 원래꺼 없으면 로컬 스토리지 내용 테이블에 넣기
+        const dataAll = data.map((x, i) => {
+          return `
+                    <tr>
+                      <td>${x.name}</td>
+
+                      <td>${x.age}</td>
+
+                      <td class="years${x.id}">${x.year}</td>
+
+                      <td>${x.char}</td>
+
+                      <td><button class="fixbtn${x.id}" onclick="fixclick(${x.id})" >수정</button><button class="deletebtn${x.id}" onclick="deleteclick(${x.id})" >삭제</button></td>
+                    </tr>`;
+        });
+        const tablebody = document.querySelector(".tablebody");
+        tablebody.innerHTML = dataAll.join("");
+
+        document.querySelector(".idbox").innerText = "";
+        document.querySelector(".namebox").innerText = "";
+        document.querySelector(".namebox").innerText = "";
+        document.querySelector(".yearbox").innerText = "";
+        document.querySelector(".charbox").innerText = "";
+
+        let savebtn = document.querySelector("#savebtn");
+        savebtn.disabled = true;
+      };
+
+      // 실시간 체크 선언
+      let idCheck2 = false;
+      let nameCheck2 = false;
+      let ageCheck2 = false;
+      let charCheck2 = false;
+      let yearCheck2 = false;
+
+      // 실시간 아이디 중복 불가능
+      function idonInput() {
+        let regex = /^[0-9]*$/;
+        let iddataup = document.querySelector("#idInput").value;
+        const idplus2 = data.filter((item) => item.id === iddataup);
+        if (idplus2.length > 0) {
+          document.querySelector(".idbox").innerText =
+            "중복입니다. 다른 숫자를 입력하세요.";
+          idCheck2 = false;
+        } else if (!regex) {
+          document.querySelector(".idbox").innerText = "숫자를 입력하세요.";
+          idCheck2 = false;
+        } else {
+          document.querySelector(".idbox").innerText = "";
+          idCheck2 = true;
+        }
+      }
+
+      // function idonChange() {
+      //   let iddataup = document.querySelector("#idInput").value;
+      //   const idplus2 = data.filter((item) => item.id === iddataup);
+      //   if (idplus2.length > 0) {
+      //     document.querySelector(".idbox").innerText =
+      //       "중복입니다. 다른 숫자를 입력하세요.";
+      //   } else {
+      //     document.querySelector(".idbox").innerText = "";
+      //     idCheck2 = true;
+      //   }
+      // }
+
+      // 실시간 이름&숫자금지 / 1글자 이상
+      function nameonInput() {
+        const regex2 = /^[ㄱ-ㅎ가-힣a-zA-Z]+$/;
+        let namedataup = document.querySelector("#nameInput").value;
+        if (namedataup.length < 1) {
+          document.querySelector(".namebox").innerText = "이름을 입력하세요.";
+          nameCheck2 = false;
+        } else if (!regex2.test(namedataup)) {
+          document.querySelector(".namebox").innerText =
+            "영문이나 한글을 입력하세요.";
+          nameCheck2 = false;
+        } else {
+          document.querySelector(".namebox").innerText = "";
+          nameCheck2 = true;
+        }
+      }
+
+      // 실시간 나이 150세 이하로 제한
+      function ageonInput() {
+        let agedataup = document.querySelector("#ageInput").value;
+        if (agedataup > 150) {
+          document.querySelector(".agebox").innerText =
+            "나이를 다시 입력하세요.";
+          ageCheck2 = false;
+        } else {
+          document.querySelector(".agebox").innerText = "";
+          ageCheck2 = true;
+        }
+      }
+
+      // 실시간 경력 15자 이상 입력해야 함
+      function yearonInput() {
+        let agedataup = document.querySelector("#yearInput").value;
+        if (agedataup.length < 15) {
+          document.querySelector(".yearbox").innerText =
+            "최소 15자 이상 입력하세요.";
+          yearCheck2 = false;
+        } else {
+          document.querySelector(".yearbox").innerText = "";
+          yearCheck2 = true;
+        }
+      }
+
+      // 실시간 별명 최소 2자리 이상 / 중복 불가
+      function charonInput() {
+        let chardataup = document.querySelector("#charInput").value;
+        const charplus2 = data.filter((item) => item.char === chardataup);
+        if (charplus2.length > 0) {
+          document.querySelector(".charbox").innerText =
+            "중복입니다. 다른 별명을 입력하세요.";
+          charCheck2 = false;
+        } else if (chardataup.length < 2) {
+          document.querySelector(".charbox").innerText =
+            "최소 2자 이상 입력하세요.";
+          charCheck2 = false;
+        } else {
+          document.querySelector(".charbox").innerText = "";
+          charCheck2 = true;
+        }
+      }
+      // 저장 버튼 비활성화
+      // 조건 만족하면 저장 버튼 활성화
+      function allonchange(index) {
+        if (index == 1) {
+          idonInput();
+        } else if (index == 2) {
+          nameonInput();
+        } else if (index == 3) {
+          ageonInput();
+        } else if (index == 4) {
+          yearonInput();
+        } else if (index == 5) {
+          charonInput();
+        }
+        let savebtn = document.querySelector("#savebtn");
+
+        if (
+          idCheck2 === true &&
+          nameCheck2 === true &&
+          charCheck2 === true &&
+          yearCheck2 === true &&
+          ageCheck2 === true
+        ) {
+          savebtn.disabled = false;
+        } else {
+          savebtn.disabled = true;
+        }
+      }
+      // 저장 버튼 누르면 데이터 저장
+      function save() {
+        // 1번 검사
+        idonInput();
+        nameonInput();
+        ageonInput();
+        yearonInput();
+        charonInput();
+
+        if (
+          idCheck2 === true &&
+          nameCheck2 === true &&
+          charCheck2 === true &&
+          yearCheck2 === true &&
+          ageCheck2 === true
+        ) {
+          const idInput = document.querySelector("#idInput").value;
+          const nameInput = document.querySelector("#nameInput").value;
+          const ageInput = document.querySelector("#ageInput").value;
+          const yearInput = document.querySelector("#yearInput").value;
+          const charInput = document.querySelector("#charInput").value;
+
+          let userInfo1 = {
+            id: idInput,
+            name: nameInput,
+            age: ageInput,
+            year: yearInput,
+            char: charInput,
+          };
+
+          data.push(userInfo1);
+          localStorage.setItem("userInfo", JSON.stringify(data));
+
+          // 로컬 스토리지 내용 테이블에 넣기
+          const dataAll = data.map((x, i) => {
+            return `
+                    <tr>
+                      <td>${x.name}</td>
+                      <td>${x.age}</td>
+                      <td class="years${x.id}">${x.year}</td>
+                      <td>${x.char}</td>
+                      <td><button class="fixbtn${x.id}" onclick="fixclick(${x.id})">수정</button><button class="deletebtn${x.id}" onclick="deleteclick(${x.id})" >삭제</button></td>`;
+          });
+
+          const tablebody = document.querySelector(".tablebody");
+          tablebody.innerHTML = dataAll.join("");
+          document.querySelector("#idInput").value = "";
+          document.querySelector("#nameInput").value = "";
+          document.querySelector("#ageInput").value = "";
+          document.querySelector("#yearInput").value = "";
+          document.querySelector("#charInput").value = "";
+
+          document.querySelector(".idbox").innerText = "";
+          document.querySelector(".namebox").innerText = "";
+          document.querySelector(".namebox").innerText = "";
+          document.querySelector(".yearbox").innerText = "";
+          document.querySelector(".charbox").innerText = "";
+          // 버튼 비활성화
+          let savebtn = document.querySelector("#savebtn");
+          savebtn.disabled = true;
+        } else {
+          savebtn.disabled = true;
+        }
+      }
+
+      // 데이터 삭제 버튼
+
+      const deleteclick = (x) => {
+        let deleteData = data.filter((item) => item.id !== String(x));
+        if (deleteData.length === 0) {
+          data.length = 0;
+          localStorage.setItem("userInfo", JSON.stringify(data));
+        } else if (deleteData.length > 0) {
+          data = deleteData;
+          localStorage.setItem("userInfo", JSON.stringify(data));
+        }
+
+        // 테이블 업데이트
+        const dataAll = data.map((x, i) => {
+          return `
+            <tr>
+              <td class="name${x.id}">${x.name}</td>
+              <td class="age${x.id}">${x.age}</td>
+              <td class="years${x.id}">${x.year}</td>
+              <td>${x.char}</td>
+              <td>
+                <button class="fixbtn${x.id}" onclick="fixclick(${x.id} data-type='')">수정</button>
+                <button class="deletebtn${x.id}" onclick="deleteclick(${x.id})">삭제</button>
+              </td>
+            </tr>`;
+        });
+
+        const tablebody = document.querySelector(".tablebody");
+        tablebody.innerHTML = dataAll.join("");
+      };
+
+      // 데이터 수정 버튼
+      let countfixclick = true;
+
+      const yearonInput2 = (x) => {
+        let agedataup = document.querySelector(`.fixinput${x}`).value;
+        if (agedataup.length < 15) {
+          document.querySelector(`.fixbox${x}`).innerText =
+            "최소 15자 이상 입력하세요.";
+          countfixclick = false;
+        } else {
+          document.querySelector(`.fixbox${x}`).innerText = "";
+          countfixclick = true;
+        }
+      };
+
+      const fixclick = (x) => {
+        let fixData = data.filter((item) => item.id === String(x));
+        const getDates = JSON.parse(localStorage.getItem("userInfo"));
+        let fixbtnname = document.querySelector(`.fixbtn${x}`).innerText;
+        if (fixbtnname === "수정") {
+          //수정완료 표시
+          document.querySelector(`.fixbtn${x}`).innerText = "수정완료";
+
+          // 데이터 수정 input창 만들기 ^_^
+          let fixInputValue = document.querySelector(`.years${x}`).innerText;
+
+          document.querySelector(
+            `.years${x}`
+          ).innerHTML = `<input value =${fixInputValue} class="fixinput${x}" oninput="yearonInput2(${x})"><div class="fixbox${x}"></div>`;
+        } else if (fixbtnname === "수정완료" && countfixclick) {
+          //수정 표시
+          document.querySelector(`.fixbtn${x}`).innerText = "수정";
+
+          const yearInput1 = document.querySelector(`.fixinput${x}`);
+          const yearInput2 = document.querySelector(`.fixinput${x}`).value;
+
+          const data1 = data.map((item) => {
+            const sample = x === Number(item.id);
+            if (sample) {
+              return {
+                ...item,
+                year: yearInput2,
+              };
+            } else {
+              return item;
+            }
+          });
+          data = data1;
+          localStorage.setItem("userInfo", JSON.stringify(data));
+          document.querySelector(`.years${x}`).innerHTML = `${yearInput2}`;
+        }
+      };
+
+      // const allCheckFunction = (id, type) => {
+      //   const docu = document.querySelector(
+      //     `${
+      //       type === "name"
+      //         ? ".name" + id
+      //         : type === "age"
+      //         ? ".age" + id
+      //         : ".years" + id
+      //     }`
+      //   );
+
+      //   // 코멘트 담을거
+      //   let comment;
+
+      //   if (type === "age") {
+      //     // 나이일떄
+      //     if (docu.value >= 150) {
+      //       comment = `<div>150이하로 작성해 주세요.</div>`;
+      //     } else {
+      //       comment = ``;
+      //     }
+      //   } else {
+      //     if (docu.length < 15) {
+      //       comment = `<div>15자 이상 작성해 주세요.</div>`;
+      //     }
+      //   }
+      // };
+    </script>
+  </body>
+</html>
