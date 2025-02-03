@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div></div>
+    <button id="버튼">버튼</button>
+    <script>
+      "use strict"; // 문법 엄격하게
+      console.log(this);
+      let object = {
+        data: {
+          함수: () => {
+            console.log(this);
+          },
+        },
+      };
+
+      object.data.함수();
+
+      let eun = {};
+      function 기계() {
+        this.이름 = "Kim";
+      }
+
+      let object1 = new 기계();
+
+      document.getElementById("버튼").addEventListener("click", function (e) {
+        console.log(this);
+        console.log(e.currentTarget);
+        var 어레이 = [1, 2, 3];
+        // 어레이.forEach(function (a) {
+        //   console.log(a);
+        // });
+
+        어레이.forEach(function (a) {
+          console.log(this);
+        });
+      });
+
+      let object2 = {
+        이름들: ["김", "이", "박"],
+        함수: function () {
+          object2.이름들.forEach(function () {
+            console.log(this, "ㅇㄴㅇㄴ");
+          });
+        },
+      };
+      object2.함수();
+
+      // function 간지나는함수() {
+      //   console.log(this);
+      // }
+      // 간지나는함수();
+
+      let 함수2 = (a) => console.log(a);
+      함수2(5);
+
+      [1, 2, 3, 4].forEach(function (a) {
+        console.log(a);
+      });
+
+      [1, 2, 3, 4].forEach((a) => {
+        console.log(a);
+      });
+    </script>
+  </body>
+</html>
