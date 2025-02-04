@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let name = "son";
+      function taggedliteral(liter, vars) {
+        console.log(liter[1] + vars);
+      }
+      taggedliteral`안녕하세요, ${name} 입니다. `;
+
+      var pants = 20;
+      var socks = 100;
+
+      `바지${pants} 양말${socks}`;
+
+      function liter(liters, varss, varss2) {
+        console.log(liters[1] + varss + liters[0] + varss2);
+      }
+      liter`바지${pants} 양말${socks}`;
+    </script>
+  </body>
+</html>

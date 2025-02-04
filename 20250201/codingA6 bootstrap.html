@@ -37,6 +37,49 @@
         overflow: hidden;
         width: 100%;
       }
+
+      /* 캐러셀 */
+      .slideimg_container {
+        width: 200vw;
+        display: flex;
+        position: relative;
+        transition: all 1s;
+      }
+
+      .mainimage {
+        position: relative;
+        width: 100vw;
+        height: calc(
+          100vh - 80px
+        ); /* 부모 div의 높이를 설정 (예: 헤더를 제외한 화면 크기) */
+        overflow: hidden; /* 넘치는 부분을 숨김 */
+      }
+
+      .bigimage {
+        object-fit: cover;
+        width: 100vw;
+        height: 100%;
+      }
+      .button-left {
+        left: 20px;
+        bottom: 0px;
+        font-size: 30px;
+        background-color: transparent;
+        color: rgb(161, 161, 161);
+      }
+
+      .button-right {
+        left: 60px;
+        bottom: 0px;
+        font-size: 30px;
+        background-color: transparent;
+        color: rgb(161, 161, 161);
+      }
+      .slideBtn {
+        border: none;
+        z-index: 3;
+        position: absolute;
+      }
     </style>
     <link
       rel="stylesheet"
@@ -45,6 +88,22 @@
   </head>
   <body>
     <!-- 캐러셀 -->
+    <!-- 이미지 캐러셀-->
+    <div class="slide-container">
+      <div class="slideimg_container">
+        <div class="mainimage">
+          <img src="./image/slide3.png" class="bigimage" />
+        </div>
+        <div class="mainimage">
+          <img src="./image/slide2.png" class="bigimage" />
+        </div>
+      </div>
+      <button class="button-left slideBtn" onclick="left_btn()">
+        <i class="fa-solid fa-chevron-left"></i></button
+      ><button class="button-right slideBtn" onclick="right_btn()">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
 
     <!-- Swiper -->
     <div class="swiper-container">
