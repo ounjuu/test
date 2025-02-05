@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .fruitsWrap {
+        display: flex;
+      }
+      img {
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="imageWrap">
+      <img src="../images/과일.png" class="imgChange" />
+    </div>
+    <div class="fruitsWrap">
+      <button class="apple" onclick='fruit("사과")'>사과</button>
+      <button class="grape" onclick='fruit("포도")'>포도</button>
+      <button class="banana" onclick='fruit("바나나")'>바나나</button>
+      <button class="peach" onclick='fruit("복숭아")'>복숭아</button>
+    </div>
+    <script>
+      const imgChange = document.querySelector(".imgChange");
+      const fruit = (type) => {
+        if (type === "사과") {
+          imgChange.src = "../images/사과.jpg";
+        } else if (type === "포도") {
+          imgChange.src = "../images/포도.jpg";
+        } else if (type === "바나나") {
+          imgChange.src = "../images/바나나.jpg";
+        } else if (type === "복숭아") {
+          imgChange.src = "../images/복숭아.jpg";
+        }
+      };
+    </script>
+  </body>
+</html>

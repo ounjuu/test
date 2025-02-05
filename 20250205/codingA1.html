@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //쇼핑몰에 쓸 상품데이터를 오브젝트로 여러개 만들고 싶습니다.
+
+      // 상품마다 부가세()라는 내부 함수를 실행하면 콘솔창에 상품가격*10%만큼의 부가세금액이 출력되도록 하고 싶으면 constructor를 어떻게 수정해야할까요?
+      function product(a, b) {
+        this.name = a;
+        this.price = b;
+        this.부가세 = function () {
+          console.log(this.price * 0.1);
+        };
+      }
+      let product1 = new product("shirts", 50000);
+      let product2 = new product("pants", 60000);
+
+      console.log(product1, product2);
+
+      function 임시함수() {
+        return 10;
+      }
+      function plus(a, b = 임시함수()) {
+        console.log(a + b);
+      }
+
+      plus(1);
+
+      function 함수(a, b, c) {
+        console.log(arguments);
+      }
+      함수(1, 2, 3);
+
+      function 함수2(a, b, ...파라미터들) {
+        console.log(파라미터들);
+      }
+
+      함수2(2, 3, 4, 5, 6);
+
+      function 함수3(...rest) {
+        for (let i = 0; i < rest.length; i++) {
+          console.log(rest[i]);
+        }
+      }
+
+      함수3(1, 2, 3, 4);
+
+      // spread 문제1
+      var a = [1, 2, 3];
+
+      var 학생1 = { name: "KIM", age: 15 };
+
+      function 기계() {
+        this.name = "KIM";
+        this.age = 15;
+      }
+
+      var 학생1 = new 기계();
+    </script>
+  </body>
+</html>
