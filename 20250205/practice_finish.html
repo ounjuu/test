@@ -87,30 +87,31 @@
     const addEventclass = () => {
       const dateInput = document.querySelector("#dateInput");
       const contentInput = document.querySelector("#contentInput");
-      let a = dateInput.value; // 입력된 날짜 값
-      let b = contentInput.value; // 입력된 내용 값
-      let alltd = document.querySelectorAll("td");
+      let inputvalue1 = dateInput.value.trim();
+      let inputvalue2 = contentInput.value.trim(); // 입력값 가져오기
+      let alltd = document.querySelectorAll("td"); // 모든 td 가져오기
 
-      for (let i = 0; i < alltd.length; i++) {
-        if (a === alltd[i].innerText) {
-          let event = alltd[i].querySelector(".event"); // 해당 td 내에서 .event 요소 찾기
+      alltd.forEach((td) => {
+        // 처음 실행 시 td에 원래 값 저장 (data-original 사용)
+        if (!td.dataset.original) {
+          td.dataset.original = td.innerText.trim();
+        }
 
-          if (event) {
-            // 기존 .event 요소가 있으면 텍스트 변경
-            event.innerText = b;
+        if (td.dataset.original === inputvalue1) {
+          let event = td.querySelector(".event"); // td 안의 div 찾기
+
+          if (!event) {
+            let div = document.createElement("div"); // div 생성
+            div.innerText = inputvalue2; // 입력값 넣기
+            div.className = "event"; // 클래스 추가
+            td.appendChild(div); // td 안에 div 추가
           } else {
-            // 기존 .event 요소가 없으면 새로 추가
-            const newdiv = document.createElement("div");
-            newdiv.innerText = b;
-            newdiv.className = "event";
-            alltd[i].appendChild(newdiv);
+            event.innerText = inputvalue2; // 이미 div가 있으면 내용만 변경
           }
         }
-      }
-
-      // 입력창 초기화
+      });
       dateInput.value = "";
-      contentInput.value = "";
+      contentInput.value = ""; // 입력창 비우기
     };
   </script>
 </html>

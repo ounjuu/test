@@ -87,30 +87,22 @@
     const addEventclass = () => {
       const dateInput = document.querySelector("#dateInput");
       const contentInput = document.querySelector("#contentInput");
-      let a = dateInput.value; // 입력된 날짜 값
-      let b = contentInput.value; // 입력된 내용 값
-      let alltd = document.querySelectorAll("td");
-
-      for (let i = 0; i < alltd.length; i++) {
-        if (a === alltd[i].innerText) {
-          let event = alltd[i].querySelector(".event"); // 해당 td 내에서 .event 요소 찾기
-
-          if (event) {
-            // 기존 .event 요소가 있으면 텍스트 변경
-            event.innerText = b;
-          } else {
-            // 기존 .event 요소가 없으면 새로 추가
-            const newdiv = document.createElement("div");
-            newdiv.innerText = b;
-            newdiv.className = "event";
-            alltd[i].appendChild(newdiv);
+      let inputvalue1 = dateInput.value;
+      let inputvalue2 = contentInput.value;
+      const tds = document.querySelectorAll("td");
+      for (let i = 0; i < tds.length; i++) {
+        let event = tds[i].querySelector(".event");
+        if (tds[i].innerText === inputvalue1) {
+          if (!event) {
+            const makediv = document.createElement("div");
+            makediv.className = "event";
+            makediv.innerText = inputvalue2;
+            tds[i].appendChild(makediv);
           }
+        } else {
+          tds[i].querySelector(".event").textContent = contentInput.value;
         }
       }
-
-      // 입력창 초기화
-      dateInput.value = "";
-      contentInput.value = "";
     };
   </script>
 </html>
